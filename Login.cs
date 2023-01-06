@@ -19,7 +19,10 @@ namespace Appointment_Scheduler_Felix_Berinde
 {
     public partial class Login : Form
     {
-        public static MySqlConnection conn { get; set; }
+
+        //Create ResourceManager for multi-lingual string data for Globalization requirement
+        ResourceManager rm = new ResourceManager(typeof(Login));
+
 
         public Login()
         {
@@ -36,41 +39,44 @@ namespace Appointment_Scheduler_Felix_Berinde
         {
 
             //Get the connection string 
-                string login = ConfigurationManager.ConnectionStrings["localdb"].ConnectionString;
-                conn = new MySqlConnection(login);
+            DBConnection.StartConnection();
 
-            //Open the connection
-                conn.Open();
-                MySqlCommand msdr = new MySqlCommand("SELECT `userName`, `password` FROM `user` WHERE `username` = '" + userNameTextBox.Text + "' AND `password` = '" + passwordTextBox.Text + "'", conn);
-                MySqlDataReader reader = msdr.ExecuteReader();
 
-                ResourceManager rm = new ResourceManager(typeof(Login));
+            MySqlCommand msc = new MySqlCommand("SELECT `userName`, `password` FROM `user` WHERE `username` = '" + userNameTextBox.Text + "' AND `password` = '" + passwordTextBox.Text + "'", DBConnection.conn);
+            MySqlDataReader reader = msc.ExecuteReader();
 
-                if (reader.Read())
-                {
-                    MessageBox.Show(string.Format(rm.GetString("strSuccessMessage")) + userNameTextBox.Text);
-                }
-                else
-                {
-                    MessageBox.Show(string.Format(rm.GetString("strFailureMessage")));
-                    userNameTextBox.Text = string.Empty;
-                    passwordTextBox.Text = string.Empty;
-                    reader.Close();
-                    msdr.Dispose();
 
-                    //Close connection
-                    conn.Close();
-                }
+            //read and validate user credentials
+            if (reader.Read())
+            {
+                MessageBox.Show(string.Format(rm.GetString("strSuccessMessage")) + userNameTextBox.Text);
+                Scheduler schedule = new Scheduler();
+                schedule.ShowDialog();
+                this.Visible = false;
+            }
+            else
+            {
+                MessageBox.Show(string.Format(rm.GetString("strFailureMessage")));
+                userNameTextBox.Text = string.Empty;
+                passwordTextBox.Text = string.Empty;
+                reader.Close();
+                msc.Dispose();
+
+                //Close connection
+                DBConnection.conn.Close();
+            }
 
         }
 
+
+
+        //Button that changes the CultureInfo value from default to French and then between English and French if continuously clicked for testing.
         bool isRegionEN = true;
 
         private void button1_Click(object sender, EventArgs e)
         {
             if (isRegionEN)
             {
-                //Button that changes the CultureInfo value from default to French and then between english and french if continuously clicked
                 System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("fr-BE");
                 ComponentResourceManager resources = new ComponentResourceManager(typeof(Login));
                 resources.ApplyResources(this, "$this");
