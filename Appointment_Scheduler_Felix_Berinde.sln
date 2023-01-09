@@ -5,6 +5,11 @@ VisualStudioVersion = 16.0.32602.291
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Appointment_Scheduler_Felix_Berinde", "Appointment_Scheduler_Felix_Berinde.csproj", "{7050219A-9657-479C-8E0B-3F181DFCE165}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "models", "models", "{73ECED05-3FE5-41A4-9720-139B83D1A389}"
+	ProjectSection(SolutionItems) = preProject
+		User.cs = User.cs
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

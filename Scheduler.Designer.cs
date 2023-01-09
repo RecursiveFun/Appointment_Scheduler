@@ -29,28 +29,18 @@ namespace Appointment_Scheduler_Felix_Berinde
         /// </summary>
         private void InitializeComponent()
         {
-            this.appointmentGrid = new System.Windows.Forms.DataGridView();
             this.customerButton = new System.Windows.Forms.Button();
             this.appointmentButton = new System.Windows.Forms.Button();
             this.calenderButton = new System.Windows.Forms.Button();
             this.logoffButton = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.appointmentGrid)).BeginInit();
             this.SuspendLayout();
-            // 
-            // appointmentGrid
-            // 
-            this.appointmentGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.appointmentGrid.Location = new System.Drawing.Point(202, 30);
-            this.appointmentGrid.Name = "appointmentGrid";
-            this.appointmentGrid.Size = new System.Drawing.Size(700, 594);
-            this.appointmentGrid.TabIndex = 0;
             // 
             // customerButton
             // 
             this.customerButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.customerButton.Location = new System.Drawing.Point(48, 223);
             this.customerButton.Name = "customerButton";
-            this.customerButton.Size = new System.Drawing.Size(100, 58);
+            this.customerButton.Size = new System.Drawing.Size(810, 58);
             this.customerButton.TabIndex = 1;
             this.customerButton.Text = "Customer";
             this.customerButton.UseVisualStyleBackColor = true;
@@ -60,7 +50,7 @@ namespace Appointment_Scheduler_Felix_Berinde
             this.appointmentButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.appointmentButton.Location = new System.Drawing.Point(48, 287);
             this.appointmentButton.Name = "appointmentButton";
-            this.appointmentButton.Size = new System.Drawing.Size(100, 58);
+            this.appointmentButton.Size = new System.Drawing.Size(810, 58);
             this.appointmentButton.TabIndex = 2;
             this.appointmentButton.Text = "Appointment";
             this.appointmentButton.UseVisualStyleBackColor = true;
@@ -70,7 +60,7 @@ namespace Appointment_Scheduler_Felix_Berinde
             this.calenderButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.calenderButton.Location = new System.Drawing.Point(48, 351);
             this.calenderButton.Name = "calenderButton";
-            this.calenderButton.Size = new System.Drawing.Size(100, 58);
+            this.calenderButton.Size = new System.Drawing.Size(810, 58);
             this.calenderButton.TabIndex = 3;
             this.calenderButton.Text = "Calender";
             this.calenderButton.UseVisualStyleBackColor = true;
@@ -94,20 +84,17 @@ namespace Appointment_Scheduler_Felix_Berinde
             this.Controls.Add(this.calenderButton);
             this.Controls.Add(this.appointmentButton);
             this.Controls.Add(this.customerButton);
-            this.Controls.Add(this.appointmentGrid);
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(930, 675);
+            this.MinimumSize = new System.Drawing.Size(930, 675);
             this.Name = "Scheduler";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Scheduler";
-            ((System.ComponentModel.ISupportInitialize)(this.appointmentGrid)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.DataGridView appointmentGrid;
         private System.Windows.Forms.Button customerButton;
         private System.Windows.Forms.Button appointmentButton;
         private System.Windows.Forms.Button calenderButton;

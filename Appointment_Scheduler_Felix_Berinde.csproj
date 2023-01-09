@@ -84,6 +84,24 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Appointment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Appointment.Designer.cs">
+      <DependentUpon>Appointment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Calender.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Calender.Designer.cs">
+      <DependentUpon>Calender.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Customer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Customer.Designer.cs">
+      <DependentUpon>Customer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Database\DBConnection.cs" />
     <Compile Include="isRegionEnglish.cs" />
     <Compile Include="Login.cs">
@@ -100,6 +118,16 @@
     <Compile Include="Scheduler.Designer.cs">
       <DependentUpon>Scheduler.cs</DependentUpon>
     </Compile>
+    <Compile Include="User.cs" />
+    <EmbeddedResource Include="Appointment.resx">
+      <DependentUpon>Appointment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Calender.resx">
+      <DependentUpon>Calender.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Customer.resx">
+      <DependentUpon>Customer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Login.fr-FR.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
