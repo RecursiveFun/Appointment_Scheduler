@@ -1,20 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
-namespace Appointment_Scheduler_Felix_Berinde
+public class Customer
 {
-    public partial class Customer : Form
-    {
-        public Customer()
-        {
-            InitializeComponent();
-        }
-    }
+	//Create AssociatedCustomers BindingList<Customer>
+	//public BindingList<Customer> AssociatedCustomers = new BindingList<Customer>();
+	
+	//create public props for the time being and figure out access later if these are even needed for this program
+	public string CustomerName { get; set; }
+	public string Address { get; set; }
+	public string Address2 { get; set; }
+	public string City { get; set; }
+	public string Country { get; set; }
+	public int Phone { get; set; }
+
+	//default constructor
+	public Customer()
+	{
+	}
 }

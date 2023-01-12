@@ -84,31 +84,42 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Appointment.cs">
+    <Compile Include="AddCustomer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Appointment.Designer.cs">
-      <DependentUpon>Appointment.cs</DependentUpon>
+    <Compile Include="AddCustomer.Designer.cs">
+      <DependentUpon>AddCustomer.cs</DependentUpon>
     </Compile>
-    <Compile Include="Calender.cs">
+    <Compile Include="Appointments.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Calender.Designer.cs">
-      <DependentUpon>Calender.cs</DependentUpon>
+    <Compile Include="Appointments.Designer.cs">
+      <DependentUpon>Appointments.cs</DependentUpon>
     </Compile>
-    <Compile Include="Customer.cs">
+    <Compile Include="Calenders.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Customer.Designer.cs">
-      <DependentUpon>Customer.cs</DependentUpon>
+    <Compile Include="Calenders.Designer.cs">
+      <DependentUpon>Calenders.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Customers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Customers.Designer.cs">
+      <DependentUpon>Customers.cs</DependentUpon>
     </Compile>
     <Compile Include="Database\DBConnection.cs" />
-    <Compile Include="isRegionEnglish.cs" />
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ModCustomer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModCustomer.Designer.cs">
+      <DependentUpon>ModCustomer.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -119,14 +130,17 @@
       <DependentUpon>Scheduler.cs</DependentUpon>
     </Compile>
     <Compile Include="User.cs" />
-    <EmbeddedResource Include="Appointment.resx">
-      <DependentUpon>Appointment.cs</DependentUpon>
+    <EmbeddedResource Include="AddCustomer.resx">
+      <DependentUpon>AddCustomer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Calender.resx">
-      <DependentUpon>Calender.cs</DependentUpon>
+    <EmbeddedResource Include="Appointments.resx">
+      <DependentUpon>Appointments.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Customer.resx">
-      <DependentUpon>Customer.cs</DependentUpon>
+    <EmbeddedResource Include="Calenders.resx">
+      <DependentUpon>Calenders.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Customers.resx">
+      <DependentUpon>Customers.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.fr-FR.resx">
       <DependentUpon>Login.cs</DependentUpon>
@@ -136,6 +150,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModCustomer.resx">
+      <DependentUpon>ModCustomer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

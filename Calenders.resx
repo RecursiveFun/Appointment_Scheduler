@@ -117,29 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="userNameLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>22, 57</value>
-  </data>
-  <data name="userNameLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>89, 13</value>
-  </data>
-  <data name="userNameLabel.Text" xml:space="preserve">
-    <value>Nom D'utilisateur:</value>
-  </data>
-  <data name="passwordLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>34, 95</value>
-  </data>
-  <data name="passwordLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>77, 13</value>
-  </data>
-  <data name="passwordLabel.Text" xml:space="preserve">
-    <value>Mot De Passe:</value>
-  </data>
-  <data name="loginButton.Text" xml:space="preserve">
-    <value>Connexion</value>
-  </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>l' Ouverture De Session</value>
-  </data>
 </root>

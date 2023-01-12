@@ -32,7 +32,7 @@ namespace Appointment_Scheduler_Felix_Berinde
 
         private void Login_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         private void loginButton_Click(object sender, EventArgs e)
@@ -54,8 +54,9 @@ namespace Appointment_Scheduler_Felix_Berinde
                 //start connection
                 DBConnection.StartConnection();
 
-
                 MySqlCommand cmd = DBConnection.conn.CreateCommand();
+
+                
                 cmd.CommandText = "SELECT EXISTS(SELECT userName FROM user WHERE userName = @username)"; 
 
                 MySqlCommand msc = new MySqlCommand("SELECT `userName`, `password` FROM `user` WHERE `username` = '" + user.UserName + "' AND `password` = '" + user.Password + "'", DBConnection.conn);
@@ -67,8 +68,10 @@ namespace Appointment_Scheduler_Felix_Berinde
                     MessageBox.Show(string.Format(rm.GetString("strSuccessMessage")) + userNameTextBox.Text);
                     DBConnection.CloseConnection();
                     Scheduler scheduler = new Scheduler();
+                    reader.Close();
+                    msc.Dispose();
                     scheduler.ShowDialog();
-                    this.Hide();
+                    this.Close();
                 }
                 else
                 {
@@ -81,41 +84,5 @@ namespace Appointment_Scheduler_Felix_Berinde
                 }
             }
         }
-
-
-
-        //Button that changes the CultureInfo value from default to French and then between English and French if continuously clicked for testing.
-        bool isRegionEN = true;
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            if (isRegionEN)
-            {
-                System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("fr-BE");
-                ComponentResourceManager resources = new ComponentResourceManager(typeof(Login));
-                resources.ApplyResources(this, "$this");
-                applyResources(resources, this.Controls);
-                isRegionEN = false;
-            }
-            else
-            {
-                System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en-US");
-                ComponentResourceManager resources = new ComponentResourceManager(typeof(Login));
-                resources.ApplyResources(this, "$this");
-                applyResources(resources, this.Controls);
-                isRegionEN = true;
-            }
-        }
-        private void applyResources(ComponentResourceManager resources, Control.ControlCollection ctls)
-        {
-            //Method that updates each resource
-            foreach (Control ctl in ctls)
-            {
-                resources.ApplyResources(ctl, ctl.Name);
-                applyResources(resources, ctl.Controls);
-            }
-        }
-
-        
     }
 }

@@ -44,6 +44,7 @@ namespace Appointment_Scheduler_Felix_Berinde
             this.customerButton.TabIndex = 1;
             this.customerButton.Text = "Customer";
             this.customerButton.UseVisualStyleBackColor = true;
+            this.customerButton.Click += new System.EventHandler(this.customerButton_Click);
             // 
             // appointmentButton
             // 
@@ -54,6 +55,7 @@ namespace Appointment_Scheduler_Felix_Berinde
             this.appointmentButton.TabIndex = 2;
             this.appointmentButton.Text = "Appointment";
             this.appointmentButton.UseVisualStyleBackColor = true;
+            this.appointmentButton.Click += new System.EventHandler(this.appointmentButton_Click);
             // 
             // calenderButton
             // 
@@ -64,10 +66,11 @@ namespace Appointment_Scheduler_Felix_Berinde
             this.calenderButton.TabIndex = 3;
             this.calenderButton.Text = "Calender";
             this.calenderButton.UseVisualStyleBackColor = true;
+            this.calenderButton.Click += new System.EventHandler(this.calenderButton_Click);
             // 
             // logoffButton
             // 
-            this.logoffButton.Location = new System.Drawing.Point(57, 603);
+            this.logoffButton.Location = new System.Drawing.Point(12, 601);
             this.logoffButton.Name = "logoffButton";
             this.logoffButton.Size = new System.Drawing.Size(75, 23);
             this.logoffButton.TabIndex = 4;
@@ -90,6 +93,7 @@ namespace Appointment_Scheduler_Felix_Berinde
             this.Name = "Scheduler";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Scheduler";
+            this.Load += new System.EventHandler(this.Scheduler_Load);
             this.ResumeLayout(false);
 
         }
