@@ -32,10 +32,10 @@ namespace Appointment_Scheduler_Felix_Berinde
             this.addCustomerButton = new System.Windows.Forms.Button();
             this.modCustomerButton = new System.Windows.Forms.Button();
             this.deleteCustomerButton = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.customersDGV = new System.Windows.Forms.DataGridView();
             this.customerLabel = new System.Windows.Forms.Label();
             this.backButton = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customersDGV)).BeginInit();
             this.SuspendLayout();
             // 
             // addCustomerButton
@@ -70,13 +70,14 @@ namespace Appointment_Scheduler_Felix_Berinde
             this.deleteCustomerButton.Text = "Delete Customer";
             this.deleteCustomerButton.UseVisualStyleBackColor = true;
             // 
-            // dataGridView1
+            // customersDGV
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(229, 31);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(578, 589);
-            this.dataGridView1.TabIndex = 3;
+            this.customersDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.customersDGV.Location = new System.Drawing.Point(229, 31);
+            this.customersDGV.Name = "customersDGV";
+            this.customersDGV.Size = new System.Drawing.Size(798, 589);
+            this.customersDGV.TabIndex = 3;
+            this.customersDGV.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.customersDGV_DataBindingComplete);
             // 
             // customerLabel
             // 
@@ -102,20 +103,19 @@ namespace Appointment_Scheduler_Felix_Berinde
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(819, 632);
+            this.ClientSize = new System.Drawing.Size(1039, 632);
             this.Controls.Add(this.backButton);
             this.Controls.Add(this.customerLabel);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.customersDGV);
             this.Controls.Add(this.deleteCustomerButton);
             this.Controls.Add(this.modCustomerButton);
             this.Controls.Add(this.addCustomerButton);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(835, 671);
             this.MinimumSize = new System.Drawing.Size(835, 671);
             this.Name = "Customers";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Customer";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customersDGV)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -126,7 +126,7 @@ namespace Appointment_Scheduler_Felix_Berinde
         private System.Windows.Forms.Button addCustomerButton;
         private System.Windows.Forms.Button modCustomerButton;
         private System.Windows.Forms.Button deleteCustomerButton;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView customersDGV;
         private System.Windows.Forms.Label customerLabel;
         private System.Windows.Forms.Button backButton;
     }

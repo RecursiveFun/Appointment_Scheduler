@@ -102,6 +102,7 @@
     <Compile Include="Calenders.Designer.cs">
       <DependentUpon>Calenders.cs</DependentUpon>
     </Compile>
+    <Compile Include="Customer.cs" />
     <Compile Include="Customers.cs">
       <SubType>Form</SubType>
     </Compile>

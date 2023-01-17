@@ -20,7 +20,7 @@ namespace Appointment_Scheduler_Felix_Berinde
     public partial class Login : Form
     {
 
-        //Create ResourceManager for multi-lingual string data for Globalization requirement
+        //Create ResourceManager for multi-lingual string data for Globalization requirement and switching between languages
         ResourceManager rm = new ResourceManager(typeof(Login));
 
 
@@ -37,6 +37,9 @@ namespace Appointment_Scheduler_Felix_Berinde
 
         private void loginButton_Click(object sender, EventArgs e)
         {
+            //TODO:Fix error handling for invalid username login attempt
+            //TODO:Create a log function to fire off here for login attempts. It must timestamp and is append or creates a new .txt log file depending on if one exists.
+
             //Check to see if userName and password are over fifty characters
             if (userNameTextBox.Text.Length > 50 || passwordTextBox.Text.Length > 50)
             {
@@ -44,42 +47,37 @@ namespace Appointment_Scheduler_Felix_Berinde
             }
             else
             {
-                //create user login object
-                User user = new User();
+                //get user list
+                List<User> allUsers = DBConnection.GetAllUsers();
 
-                //set username and password from user inputs
-                user.UserName = userNameTextBox.Text;
-                user.Password = passwordTextBox.Text;
-
-                //start connection
-                DBConnection.StartConnection();
-
-                MySqlCommand cmd = DBConnection.conn.CreateCommand();
-
-                
-                cmd.CommandText = "SELECT EXISTS(SELECT userName FROM user WHERE userName = @username)"; 
-
-                MySqlCommand msc = new MySqlCommand("SELECT `userName`, `password` FROM `user` WHERE `username` = '" + user.UserName + "' AND `password` = '" + user.Password + "'", DBConnection.conn);
-                MySqlDataReader reader = msc.ExecuteReader();
-
-                //read and validate user credentials
-                if (reader.Read())
+                try
                 {
-                    MessageBox.Show(string.Format(rm.GetString("strSuccessMessage")) + userNameTextBox.Text);
-                    DBConnection.CloseConnection();
-                    Scheduler scheduler = new Scheduler();
-                    reader.Close();
-                    msc.Dispose();
-                    scheduler.ShowDialog();
-                    this.Close();
+                    //check each user to see if name or password match to login
+                    foreach (User user in allUsers)
+                    {
+                        if (user.UserName == userNameTextBox.Text)
+                        {
+                            if (user.Password == passwordTextBox.Text)
+                            {
+                                MessageBox.Show(string.Format(rm.GetString("strSuccessMessage")) +
+                                                userNameTextBox.Text);
+                                Scheduler scheduler = new Scheduler();
+                                scheduler.ShowDialog();
+                                this.Close();
+                            }
+                            else
+                            {
+                                MessageBox.Show(string.Format(rm.GetString("strFailureMessage")));
+                            }
+                        }
+                    }
                 }
-                else
+                catch (MySqlException ex)
                 {
-                    MessageBox.Show(string.Format(rm.GetString("strFailureMessage")));
-                    userNameTextBox.Text = string.Empty;
-                    passwordTextBox.Text = string.Empty;
-                    reader.Close();
-                    msc.Dispose();
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
                     DBConnection.CloseConnection();
                 }
             }
