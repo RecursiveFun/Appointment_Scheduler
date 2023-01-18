@@ -17,6 +17,19 @@ namespace Appointment_Scheduler_Felix_Berinde
             InitializeComponent();
         }
 
+        //param loaded constructor
+        public ModCustomer(Customer customer)
+        {
+            //TODO: load customer data for modification form
+
+            //customerNameTextBox.Text = 
+            //customerAddressTextBox.Text =
+            //customerAddress2TextBox.Text = 
+            //customerCityTextBox.Text = 
+            //customerCountryTextBox.Text = 
+            //customerPhoneTextBox.Text = 
+        }
+
         private void backButton_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -26,12 +39,17 @@ namespace Appointment_Scheduler_Felix_Berinde
 
         private void resetButton_Click(object sender, EventArgs e)
         {
-            customerNameTextBox.Text = string.Empty;
-            customerAddressTextBox.Text = string.Empty;
-            customerAddress2TextBox.Text = string.Empty;
-            customerCityTextBox.Text = string.Empty;
-            customerCountryTextBox.Text = string.Empty;
-            customerPhoneTextBox.Text = string.Empty;
+            //Confirm the reset with a MessageBox
+            if (DialogResult.Yes == MessageBox.Show("Are You Sure?", "Confirmation", MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning))
+            {
+                customerNameTextBox.Text = string.Empty;
+                customerAddressTextBox.Text = string.Empty;
+                customerAddress2TextBox.Text = string.Empty;
+                customerCityTextBox.Text = string.Empty;
+                customerCountryTextBox.Text = string.Empty;
+                customerPhoneTextBox.Text = string.Empty;
+            }
         }
     }
 }

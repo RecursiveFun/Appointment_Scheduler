@@ -90,6 +90,8 @@
     <Compile Include="AddCustomer.Designer.cs">
       <DependentUpon>AddCustomer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Address.cs" />
+    <Compile Include="Appointment.cs" />
     <Compile Include="Appointments.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -102,6 +104,8 @@
     <Compile Include="Calenders.Designer.cs">
       <DependentUpon>Calenders.cs</DependentUpon>
     </Compile>
+    <Compile Include="City.cs" />
+    <Compile Include="Country.cs" />
     <Compile Include="Customer.cs" />
     <Compile Include="Customers.cs">
       <SubType>Form</SubType>
