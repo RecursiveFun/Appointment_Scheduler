@@ -38,7 +38,7 @@ namespace Appointment_Scheduler_Felix_Berinde
         private void loginButton_Click(object sender, EventArgs e)
         {
             //TODO:Fix error handling for invalid username login attempt
-            //TODO:Create a log function to fire off here for login attempts. It must timestamp and is append or creates a new .txt log file depending on if one exists.
+            //TODO:Create a log function to fire off here for login attempts. It must timestamp and it appends or creates a new .txt log file depending on if one exists.
 
             //Check to see if userName and password are over fifty characters
             if (userNameTextBox.Text.Length > 50 || passwordTextBox.Text.Length > 50)

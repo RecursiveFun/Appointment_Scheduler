@@ -30,12 +30,12 @@ namespace Appointment_Scheduler_Felix_Berinde
         private void InitializeComponent()
         {
             this.AppointmentLabel = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.appointmentsDGV = new System.Windows.Forms.DataGridView();
             this.deleteAppointmentButton = new System.Windows.Forms.Button();
             this.modAppointmentButton = new System.Windows.Forms.Button();
             this.addAppointmentButton = new System.Windows.Forms.Button();
             this.backButton = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.appointmentsDGV)).BeginInit();
             this.SuspendLayout();
             // 
             // AppointmentLabel
@@ -48,13 +48,13 @@ namespace Appointment_Scheduler_Felix_Berinde
             this.AppointmentLabel.TabIndex = 9;
             this.AppointmentLabel.Text = "Appointments";
             // 
-            // dataGridView1
+            // appointmentsDGV
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(220, 36);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(578, 589);
-            this.dataGridView1.TabIndex = 8;
+            this.appointmentsDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.appointmentsDGV.Location = new System.Drawing.Point(220, 36);
+            this.appointmentsDGV.Name = "appointmentsDGV";
+            this.appointmentsDGV.Size = new System.Drawing.Size(578, 589);
+            this.appointmentsDGV.TabIndex = 8;
             // 
             // deleteAppointmentButton
             // 
@@ -65,6 +65,7 @@ namespace Appointment_Scheduler_Felix_Berinde
             this.deleteAppointmentButton.TabIndex = 7;
             this.deleteAppointmentButton.Text = "Delete Appointment";
             this.deleteAppointmentButton.UseVisualStyleBackColor = true;
+            this.deleteAppointmentButton.Click += new System.EventHandler(this.deleteAppointmentButton_Click);
             // 
             // modAppointmentButton
             // 
@@ -75,6 +76,7 @@ namespace Appointment_Scheduler_Felix_Berinde
             this.modAppointmentButton.TabIndex = 6;
             this.modAppointmentButton.Text = "Modify Appointment";
             this.modAppointmentButton.UseVisualStyleBackColor = true;
+            this.modAppointmentButton.Click += new System.EventHandler(this.modAppointmentButton_Click);
             // 
             // addAppointmentButton
             // 
@@ -96,24 +98,24 @@ namespace Appointment_Scheduler_Felix_Berinde
             this.backButton.UseVisualStyleBackColor = true;
             this.backButton.Click += new System.EventHandler(this.backButton_Click);
             // 
-            // Appointment
+            // Appointments
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(819, 632);
             this.Controls.Add(this.backButton);
             this.Controls.Add(this.AppointmentLabel);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.appointmentsDGV);
             this.Controls.Add(this.deleteAppointmentButton);
             this.Controls.Add(this.modAppointmentButton);
             this.Controls.Add(this.addAppointmentButton);
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(835, 671);
             this.MinimumSize = new System.Drawing.Size(835, 671);
-            this.Name = "Appointment";
+            this.Name = "Appointments";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Appointment";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.appointmentsDGV)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -122,7 +124,7 @@ namespace Appointment_Scheduler_Felix_Berinde
         #endregion
 
         private System.Windows.Forms.Label AppointmentLabel;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView appointmentsDGV;
         private System.Windows.Forms.Button deleteAppointmentButton;
         private System.Windows.Forms.Button modAppointmentButton;
         private System.Windows.Forms.Button addAppointmentButton;
