@@ -13,10 +13,10 @@ namespace Appointment_Scheduler_Felix_Berinde
             InitializeComponent();
 
             //create temp customer list
-            List<Customer> tempList = new List<Customer>();
+            List<AllCustomersGrid> tempList = new List<AllCustomersGrid>();
 
-            //assign the customer class database list to the temp customer list
-            tempList = DBConnection.GetAllCustomers();
+            //assign the customer class database table to the temp customer list
+            tempList = DBConnection.GetAllCustomersForm();
 
             //set the data source
             customersDGV.DataSource = tempList;
@@ -38,6 +38,10 @@ namespace Appointment_Scheduler_Felix_Berinde
 
             //remove vertical scrollbar
             customersDGV.ScrollBars = ScrollBars.Vertical;
+
+            //autosize each column evenly in the grid based on grid size
+            customersDGV.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            customersDGV.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
         }
 
         private void backButton_Click(object sender, EventArgs e)
@@ -89,5 +93,6 @@ namespace Appointment_Scheduler_Felix_Berinde
                 
             }
         }
+
     }
 }

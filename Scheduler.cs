@@ -35,8 +35,8 @@ namespace Appointment_Scheduler_Felix_Berinde
 
         private void calenderButton_Click(object sender, EventArgs e)
         {
-            Calenders calender = new Calenders();
-            calender.ShowDialog();
+            Calendars calendar = new Calendars();
+            calendar.ShowDialog();
         }
     }
 }

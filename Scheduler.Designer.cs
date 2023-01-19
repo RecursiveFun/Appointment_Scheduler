@@ -31,7 +31,7 @@ namespace Appointment_Scheduler_Felix_Berinde
         {
             this.customerButton = new System.Windows.Forms.Button();
             this.appointmentButton = new System.Windows.Forms.Button();
-            this.calenderButton = new System.Windows.Forms.Button();
+            this.calendarButton = new System.Windows.Forms.Button();
             this.logoffButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -57,16 +57,16 @@ namespace Appointment_Scheduler_Felix_Berinde
             this.appointmentButton.UseVisualStyleBackColor = true;
             this.appointmentButton.Click += new System.EventHandler(this.appointmentButton_Click);
             // 
-            // calenderButton
+            // calendarButton
             // 
-            this.calenderButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.calenderButton.Location = new System.Drawing.Point(48, 351);
-            this.calenderButton.Name = "calenderButton";
-            this.calenderButton.Size = new System.Drawing.Size(810, 58);
-            this.calenderButton.TabIndex = 3;
-            this.calenderButton.Text = "Calender";
-            this.calenderButton.UseVisualStyleBackColor = true;
-            this.calenderButton.Click += new System.EventHandler(this.calenderButton_Click);
+            this.calendarButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.calendarButton.Location = new System.Drawing.Point(48, 351);
+            this.calendarButton.Name = "calendarButton";
+            this.calendarButton.Size = new System.Drawing.Size(810, 58);
+            this.calendarButton.TabIndex = 3;
+            this.calendarButton.Text = "Calendar";
+            this.calendarButton.UseVisualStyleBackColor = true;
+            this.calendarButton.Click += new System.EventHandler(this.calenderButton_Click);
             // 
             // logoffButton
             // 
@@ -84,7 +84,7 @@ namespace Appointment_Scheduler_Felix_Berinde
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(914, 636);
             this.Controls.Add(this.logoffButton);
-            this.Controls.Add(this.calenderButton);
+            this.Controls.Add(this.calendarButton);
             this.Controls.Add(this.appointmentButton);
             this.Controls.Add(this.customerButton);
             this.MaximizeBox = false;
@@ -101,7 +101,7 @@ namespace Appointment_Scheduler_Felix_Berinde
         #endregion
         private System.Windows.Forms.Button customerButton;
         private System.Windows.Forms.Button appointmentButton;
-        private System.Windows.Forms.Button calenderButton;
+        private System.Windows.Forms.Button calendarButton;
         private System.Windows.Forms.Button logoffButton;
     }
 }
