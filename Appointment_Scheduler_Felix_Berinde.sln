@@ -8,6 +8,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "models", "models", "{73ECED05-3FE5-41A4-9720-139B83D1A389}"
 	ProjectSection(SolutionItems) = preProject
 		Address.cs = Address.cs
+		AllCustomersGrid.cs = AllCustomersGrid.cs
 		Appointment.cs = Appointment.cs
 		City.cs = City.cs
 		Customer.cs = Customer.cs

@@ -35,6 +35,8 @@ namespace Appointment_Scheduler_Felix_Berinde
             this.customersDGV = new System.Windows.Forms.DataGridView();
             this.customerLabel = new System.Windows.Forms.Label();
             this.backButton = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.customersDGV)).BeginInit();
             this.SuspendLayout();
             // 
@@ -105,6 +107,8 @@ namespace Appointment_Scheduler_Felix_Berinde
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1039, 632);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.backButton);
             this.Controls.Add(this.customerLabel);
             this.Controls.Add(this.customersDGV);
@@ -130,5 +134,7 @@ namespace Appointment_Scheduler_Felix_Berinde
         private System.Windows.Forms.DataGridView customersDGV;
         private System.Windows.Forms.Label customerLabel;
         private System.Windows.Forms.Button backButton;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }

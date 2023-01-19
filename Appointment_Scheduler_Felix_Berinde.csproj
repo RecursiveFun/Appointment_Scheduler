@@ -98,11 +98,11 @@
     <Compile Include="Appointments.Designer.cs">
       <DependentUpon>Appointments.cs</DependentUpon>
     </Compile>
-    <Compile Include="Calenders.cs">
+    <Compile Include="Calendars.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Calenders.Designer.cs">
-      <DependentUpon>Calenders.cs</DependentUpon>
+    <Compile Include="Calendars.Designer.cs">
+      <DependentUpon>Calendars.cs</DependentUpon>
     </Compile>
     <Compile Include="City.cs" />
     <Compile Include="Country.cs" />
@@ -134,6 +134,7 @@
     <Compile Include="Scheduler.Designer.cs">
       <DependentUpon>Scheduler.cs</DependentUpon>
     </Compile>
+    <Compile Include="AllCustomersGrid.cs" />
     <Compile Include="User.cs" />
     <EmbeddedResource Include="AddCustomer.resx">
       <DependentUpon>AddCustomer.cs</DependentUpon>
@@ -141,8 +142,8 @@
     <EmbeddedResource Include="Appointments.resx">
       <DependentUpon>Appointments.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Calenders.resx">
-      <DependentUpon>Calenders.cs</DependentUpon>
+    <EmbeddedResource Include="Calendars.resx">
+      <DependentUpon>Calendars.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Customers.resx">
       <DependentUpon>Customers.cs</DependentUpon>
