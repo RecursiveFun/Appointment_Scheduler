@@ -142,4 +142,13 @@
   <data name="$this.Text" xml:space="preserve">
     <value>l' Ouverture De Session</value>
   </data>
+  <data name="strFailureMessage" xml:space="preserve">
+    <value>Désolé, le nom d'utilisateur et/ou le mot de passe saisis sont invalides.</value>
+  </data>
+  <data name="strOverFailureMessage" xml:space="preserve">
+    <value>Le nom d'utilisateur ou le mot de passe ne doit pas dépasser 50 caractères.</value>
+  </data>
+  <data name="strSuccessMessage" xml:space="preserve">
+    <value>Bonjour, vous êtes connecté avec succès : </value>
+  </data>
 </root>

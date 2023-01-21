@@ -61,7 +61,7 @@ namespace Appointment_Scheduler_Felix_Berinde
             set { _lastUpdateBy = value; }
         }
 
-        //default constructor with params
+        //constructor with all params
         public Customer(int customerID, string customerName, int addressID, bool active, DateTime createDate,
             string createdBy, DateTime lastUpdate, string lastUpdateBy)
         {
@@ -74,6 +74,7 @@ namespace Appointment_Scheduler_Felix_Berinde
             this._lastUpdate = lastUpdate;
             this._lastUpdateBy = lastUpdateBy;
         }
+
 
         public Customer(){}
     }

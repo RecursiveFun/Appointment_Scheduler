@@ -8,18 +8,18 @@ namespace Appointment_Scheduler_Felix_Berinde
 {
     public partial class Customers : Form
     {
+        //create temp customer list
+        List<AllCustomersGrid> allCusto = new List<AllCustomersGrid>();
+
         public Customers()
         {
             InitializeComponent();
 
-            //create temp customer list
-            List<AllCustomersGrid> tempList = new List<AllCustomersGrid>();
-
             //assign the customer class database table to the temp customer list
-            tempList = DBConnection.GetAllCustomersForm();
+            allCusto = DBConnection.GetAllCustomersForm();
 
             //set the data source
-            customersDGV.DataSource = tempList;
+            customersDGV.DataSource = allCusto;
 
             //see a full row selection
             customersDGV.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -51,7 +51,7 @@ namespace Appointment_Scheduler_Felix_Berinde
 
         private void addCustomerButton_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            this.Close();
             AddCustomer customer = new AddCustomer();
             customer.ShowDialog();
         }
@@ -64,7 +64,7 @@ namespace Appointment_Scheduler_Felix_Berinde
                 MessageBox.Show("Nothing Selected!", "Please make a selection.");
                 return;
             }
-            this.Hide();
+            this.Close();
             ModCustomer customer = new ModCustomer();
             customer.ShowDialog();
         }
@@ -83,14 +83,18 @@ namespace Appointment_Scheduler_Felix_Berinde
                 return;
             }
             //get the selected row
-            Customer C = customersDGV.CurrentRow.DataBoundItem as Customer;
+            AllCustomersGrid c = customersDGV.CurrentRow.DataBoundItem as AllCustomersGrid;
 
             //Confirm the delete with a MessageBox
             if (DialogResult.Yes == MessageBox.Show("Are You Sure?", "Confirmation", MessageBoxButtons.YesNo,
                     MessageBoxIcon.Warning))
             {
-                //TODO: remove the selected customer from the list and database
                 
+                //TODO: remove the selected customer from database
+                
+
+                //allCusto.Remove(c);
+                //customersDGV.Refresh();
             }
         }
 

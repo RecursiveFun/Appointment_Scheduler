@@ -102,6 +102,20 @@ namespace Appointment_Scheduler_Felix_Berinde
             this.backButton.UseVisualStyleBackColor = true;
             this.backButton.Click += new System.EventHandler(this.backButton_Click);
             // 
+            // label1
+            // 
+            this.label1.Location = new System.Drawing.Point(0, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(100, 23);
+            this.label1.TabIndex = 1;
+            // 
+            // label2
+            // 
+            this.label2.Location = new System.Drawing.Point(0, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(100, 23);
+            this.label2.TabIndex = 0;
+            // 
             // Customers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -119,7 +133,7 @@ namespace Appointment_Scheduler_Felix_Berinde
             this.MinimumSize = new System.Drawing.Size(835, 671);
             this.Name = "Customers";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Customer";
+            this.Text = "Customers";
             ((System.ComponentModel.ISupportInitialize)(this.customersDGV)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
