@@ -273,7 +273,10 @@
   <data name="&gt;&gt;userNameLabel.Name" xml:space="preserve">
     <value>userNameLabel</value>
   </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <data name="$this.Localizable" type="System.Boolean, mscorlib">
     <value>True</value>
-  </metadata>
+  </data>
+  <data name="strOverFailureMessage" xml:space="preserve">
+    <value>Username or Password must not be over 50 characters in length.</value>
+  </data>
 </root>
