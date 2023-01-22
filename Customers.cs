@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Windows.Forms;
 using Appointment_Scheduler_Felix_Berinde.Database;
+using MySql.Data.MySqlClient;
 
 
 namespace Appointment_Scheduler_Felix_Berinde
@@ -9,7 +11,7 @@ namespace Appointment_Scheduler_Felix_Berinde
     public partial class Customers : Form
     {
         //create temp customer list
-        List<AllCustomersGrid> allCusto = new List<AllCustomersGrid>();
+        BindingList<AllCustomersGrid> allCusto = new BindingList<AllCustomersGrid>();
 
         public Customers()
         {
@@ -42,7 +44,12 @@ namespace Appointment_Scheduler_Felix_Berinde
             //autosize each column evenly in the grid based on grid size
             customersDGV.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             customersDGV.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
+
+            //remove the ID column from the grid
+            customersDGV.Columns["ID"].Visible = false;
+
         }
+
 
         private void backButton_Click(object sender, EventArgs e)
         {
@@ -51,9 +58,9 @@ namespace Appointment_Scheduler_Felix_Berinde
 
         private void addCustomerButton_Click(object sender, EventArgs e)
         {
-            this.Close();
             AddCustomer customer = new AddCustomer();
             customer.ShowDialog();
+            this.Close();
         }
 
         private void modCustomerButton_Click(object sender, EventArgs e)
@@ -64,6 +71,7 @@ namespace Appointment_Scheduler_Felix_Berinde
                 MessageBox.Show("Nothing Selected!", "Please make a selection.");
                 return;
             }
+            //close this form and open modCustomer 
             this.Close();
             ModCustomer customer = new ModCustomer();
             customer.ShowDialog();
@@ -71,6 +79,7 @@ namespace Appointment_Scheduler_Felix_Berinde
 
         private void customersDGV_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
+            //remove the default selection from the grid
             customersDGV.ClearSelection();
         }
 
@@ -89,12 +98,27 @@ namespace Appointment_Scheduler_Felix_Berinde
             if (DialogResult.Yes == MessageBox.Show("Are You Sure?", "Confirmation", MessageBoxButtons.YesNo,
                     MessageBoxIcon.Warning))
             {
+                //remove customer from local list
+                customersDGV.Rows.RemoveAt(customersDGV.SelectedRows[0].Index);
+                allCusto.Remove(c);
                 
-                //TODO: remove the selected customer from database
-                
+                //open the connection
+                DBConnection.StartConnection();
 
-                //allCusto.Remove(c);
-                //customersDGV.Refresh();
+                //create variables for delete command
+                int ID = c.ID;
+                const string DELETECUSTOMER = @"DELETE FROM client_schedule.customer WHERE customerId = @ID;";
+
+                //create delete command
+                MySqlCommand deleteCustomerCmd = new MySqlCommand(DELETECUSTOMER, DBConnection.conn);
+                deleteCustomerCmd.Parameters.AddWithValue("@ID", ID);
+                deleteCustomerCmd.ExecuteNonQuery();
+
+                //close the connection
+                DBConnection.CloseConnection();
+
+                //refresh the grid to show that the deletion worked
+                customersDGV.Refresh();
             }
         }
 
