@@ -29,9 +29,9 @@ namespace Appointment_Scheduler_Felix_Berinde
 
         private void backButton_Click(object sender, EventArgs e)
         {
-            this.Close();
             Customers customers = new Customers();
             customers.ShowDialog();
+            this.Close();
         }
 
         private void AddCustomer_Load(object sender, EventArgs e)
@@ -41,14 +41,14 @@ namespace Appointment_Scheduler_Felix_Berinde
 
         private void submitButton_Click(object sender, EventArgs e)
         {
-            //check if textboxes are empty (leave address2 optional)
+            //check if textboxes are empty (keep address2 optional)
             if (customerNameTextBox.Text == string.Empty || customerAddressTextBox.Text == string.Empty
                                                          || customerCityTextBox.Text == string.Empty
                                                          || customerCountryTextBox.Text == string.Empty
                                                          || customerPhoneTextBox.Text == string.Empty)
             {
                 MessageBox.Show(
-                    "Name, Address, City, Country, or Phone are blank. Please add missing values before trying to submit again.");
+                    "Name, Address, City, Country, and/or Phone are blank. Please add missing values before trying to submit again.");
             }
             else
             {
@@ -63,12 +63,12 @@ namespace Appointment_Scheduler_Felix_Berinde
                 string customer = customerNameTextBox.Text;
                 string phone = customerPhoneTextBox.Text;
 
-                string INSERTCOUNTRY =
+                const string INSERTCOUNTRY =
                     @"INSERT INTO client_schedule.country VALUES (NULL, @country, NOW(), 'user', NOW(), 'user')";
-                string INSERTCITY = @"INSERT INTO city VALUES (NULL, @city, @countryId, NOW(), 'user', NOW(), 'user') ";
-                string INSERTADDRESS = @"INSERT INTO address VALUES (NULL, @address, @address2, 
+                const string INSERTCITY = @"INSERT INTO city VALUES (NULL, @city, @countryId, NOW(), 'user', NOW(), 'user') ";
+                const string INSERTADDRESS = @"INSERT INTO address VALUES (NULL, @address, @address2, 
                                    @cityId, 'not needed', @phone, NOW(), 'user', NOW(), 'user')";
-                string INSERTCUSTOMER =
+                const string INSERTCUSTOMER =
                     @"INSERT INTO customer VALUES (NULL, @customerName, @addressId, 1, NOW(), 'user', NOW(), 'user')";
 
 

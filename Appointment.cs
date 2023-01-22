@@ -183,7 +183,7 @@ public class Appointment
 	//constructor with params
 	public Appointment(int appointmentID, int customerID, int userID, string title, string description,
 		string location, string contact, string type, string url, DateTime start, DateTime end,
-		DateTime createDate, string createdBy, DateTime lastUpdate, string lastupdatedBy)
+		DateTime createDate, string createdBy, DateTime lastUpdate, string lastUpdateBy)
 	{
 		this._appointmentID = appointmentID;
 		this._customerID = customerID;
@@ -199,7 +199,7 @@ public class Appointment
 		this._createDate = createDate;
 		this._createdBy = createdBy;
 		this._lastUpdate = lastUpdate;
-		this._lastUpdateBy = lastupdatedBy;
+		this._lastUpdateBy = lastUpdateBy;
 	}
 
 	//default constructor

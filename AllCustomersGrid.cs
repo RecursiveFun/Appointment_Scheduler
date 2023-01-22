@@ -8,6 +8,7 @@ namespace Appointment_Scheduler_Felix_Berinde
 {
     public class AllCustomersGrid
     {
+        private int _ID;
         private string _Name;
         private string _Address;
         private string _Address2;
@@ -15,14 +16,21 @@ namespace Appointment_Scheduler_Felix_Berinde
         private string _Country;
         private string _Phone;
 
-        public AllCustomersGrid(string name, string address, string address2, string city, string country, string phone)
+        public AllCustomersGrid(int ID, string name, string address, string address2, string city, string country, string phone)
         {
+            this._ID = ID;
             this._Name = name;
             this._Address = address;
             this._Address2 = address2;
             this._City = city;
             this._Country = country;
             this._Phone = phone;
+        }
+
+        public int ID
+        {
+            get { return _ID; }
+            set { _ID = value; }
         }
 
         public string Name
