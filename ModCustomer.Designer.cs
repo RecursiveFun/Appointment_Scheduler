@@ -87,6 +87,7 @@ namespace Appointment_Scheduler_Felix_Berinde
             this.submitButton.TabIndex = 29;
             this.submitButton.Text = "Submit";
             this.submitButton.UseVisualStyleBackColor = true;
+            this.submitButton.Click += new System.EventHandler(this.submitButton_Click);
             // 
             // resetButton
             // 

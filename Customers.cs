@@ -72,8 +72,10 @@ namespace Appointment_Scheduler_Felix_Berinde
                 return;
             }
             //close this form and open modCustomer 
+            //get the selected row
+            AllCustomersGrid c = customersDGV.CurrentRow.DataBoundItem as AllCustomersGrid;
             this.Close();
-            ModCustomer customer = new ModCustomer();
+            ModCustomer customer = new ModCustomer(c.ID, c);
             customer.ShowDialog();
         }
 
