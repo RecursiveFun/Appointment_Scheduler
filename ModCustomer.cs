@@ -14,20 +14,22 @@ namespace Appointment_Scheduler_Felix_Berinde
 {
     public partial class ModCustomer : Form
     {
+
         public ModCustomer()
         {
             InitializeComponent();
         }
 
         //param loaded constructor
-        public ModCustomer(int customerID, AllCustomersGrid customer)
+        public ModCustomer(int customerId, AllCustomersGrid customer)
         {
             InitializeComponent();
-
+            customerId = customer.ID;
             customerNameTextBox.Text = customer.Name;
             customerAddressTextBox.Text = customer.Address;
             customerAddress2TextBox.Text = customer.Address2;
             customerCityTextBox.Text = customer.City;
+            customerPostalCodeTextBox.Text = customer.PostalCode;
             customerCountryTextBox.Text = customer.Country;
             customerPhoneTextBox.Text = customer.Phone;
         }
@@ -67,59 +69,59 @@ namespace Appointment_Scheduler_Felix_Berinde
             }
             else
             {
-                //TODO: Fix modify submit to database
+                //TODO: Fix modify submit to database by grabbing the customerId
 
-                //            //create variables for update commands
-    //            string country = customerCountryTextBox.Text;
-    //            string city = customerCityTextBox.Text;
-    //            string address = customerAddressTextBox.Text;
-    //            string address2 = customerAddress2TextBox.Text;
-    //            string customer = customerNameTextBox.Text;
-    //            string phone = customerPhoneTextBox.Text;
+                //create variables for update commands
+                int customerId = ;
+                string country = customerCountryTextBox.Text;
+                string postalCode = customerPostalCodeTextBox.Text;
+                string city = customerCityTextBox.Text;
+                string address = customerAddressTextBox.Text;
+                string address2 = customerAddress2TextBox.Text;
+                string customer = customerNameTextBox.Text;
+                string phone = customerPhoneTextBox.Text;
 
-    //            const string INSERTCOUNTRY =
-    //@"INSERT INTO client_schedule.country VALUES (NULL, @country, NOW(), 'user', NOW(), 'user')";
-    //            const string INSERTCITY = @"INSERT INTO city VALUES (NULL, @city, @countryId, NOW(), 'user', NOW(), 'user') ";
-    //            const string INSERTADDRESS = @"INSERT INTO address VALUES (NULL, @address, @address2, 
-    //                               @cityId, 'not needed', @phone, NOW(), 'user', NOW(), 'user')";
-    //            const string INSERTCUSTOMER =
-    //                @"INSERT INTO customer VALUES (NULL, @customerName, @addressId, 1, NOW(), 'user', NOW(), 'user')";
 
-    //            //open connection
-    //            DBConnection.StartConnection();
+                //create insert statement
+                string UPDATECUSTOMER = 
+                    @"UPDATE client_schedule.customer
+                    SET customerName = @customer
+                    WHERE customerId = @customerId;
+                    UPDATE client_schedule.address
+                    SET address = @address, address2 = @address2, postalCode = @postalCode, phone = @phone
+                    WHERE addressId = (SELECT addressId FROM client_schedule.customer WHERE customerId = @customerId);
+                    UPDATE client_schedule.city
+                    SET city = @city
+                    WHERE cityId = (SELECT cityId FROM client_schedule.address WHERE addressId = (SELECT addressId FROM client_schedule.customer WHERE customerId = @customerId));
+                    UPDATE client_schedule.country
+                    SET country = @country
+                    WHERE countryId = (SELECT countryId FROM client_schedule.city WHERE cityId = (SELECT cityId FROM client_schedule.address WHERE addressId = (SELECT addressId FROM customer WHERE customerId = @customerId)))";
+
+                //open db connection
+                DBConnection.StartConnection();
+
+
+                //create SQL command
+                MySqlCommand updateCmd = new MySqlCommand(UPDATECUSTOMER, DBConnection.conn);
+                    updateCmd.Parameters.AddWithValue("@customerId", customerId);
+                    updateCmd.Parameters.AddWithValue("@customer", customer);
+                    updateCmd.Parameters.AddWithValue("@address", address);
+                    updateCmd.Parameters.AddWithValue("@address2", address2);
+                    updateCmd.Parameters.AddWithValue("@postalCode", postalCode);
+                    updateCmd.Parameters.AddWithValue("@phone", phone);
+                    updateCmd.Parameters.AddWithValue("@city", city);
+                    updateCmd.Parameters.AddWithValue("@country", country);
+                    updateCmd.ExecuteNonQuery();
+
+                //close connection
+                DBConnection.CloseConnection();
+
+                //open customer form
+                Customers customerForm = new Customers();
+                customerForm.ShowDialog();
+
+                this.Close();
                 
-
-    //            //create insert commands
-    //            MySqlCommand countryCmd = new MySqlCommand(INSERTCOUNTRY, DBConnection.conn);
-    //            countryCmd.Parameters.AddWithValue("@country", country);
-    //            countryCmd.ExecuteNonQuery();
-    //            int countryId = (int)countryCmd.LastInsertedId;
-
-    //            MySqlCommand cityCmd = new MySqlCommand(INSERTCITY, DBConnection.conn);
-    //            cityCmd.Parameters.AddWithValue("@countryId", countryId);
-    //            cityCmd.Parameters.AddWithValue("@city", city);
-    //            cityCmd.ExecuteNonQuery();
-    //            int cityId = (int)cityCmd.LastInsertedId;
-
-    //            MySqlCommand addressCmd = new MySqlCommand(INSERTADDRESS, DBConnection.conn);
-    //            addressCmd.Parameters.AddWithValue("@cityId", cityId);
-    //            addressCmd.Parameters.AddWithValue("@address", address);
-    //            addressCmd.Parameters.AddWithValue("@address2", address2);
-    //            addressCmd.Parameters.AddWithValue("@phone", phone);
-    //            addressCmd.ExecuteNonQuery();
-    //            int addressId = (int)addressCmd.LastInsertedId;
-
-    //            MySqlCommand customerCmd = new MySqlCommand(INSERTCUSTOMER, DBConnection.conn);
-    //            customerCmd.Parameters.AddWithValue("@addressId", addressId);
-    //            customerCmd.Parameters.AddWithValue("@customerName", customer);
-    //            customerCmd.ExecuteNonQuery();
-    //            int customerId = (int)customerCmd.LastInsertedId;
-
-    //            //insert into 
-    //            this.Close();
-    //            Customers customerForm = new Customers();
-    //            customerForm.Show();
-    //            DBConnection.CloseConnection();
             }
         }
     }

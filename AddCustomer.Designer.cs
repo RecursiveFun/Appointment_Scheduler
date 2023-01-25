@@ -45,6 +45,8 @@ namespace Appointment_Scheduler_Felix_Berinde
             this.customerCountryTextBox = new System.Windows.Forms.TextBox();
             this.customerCityLabel = new System.Windows.Forms.Label();
             this.customerCountryLabel = new System.Windows.Forms.Label();
+            this.postalCodeLbl = new System.Windows.Forms.Label();
+            this.customerPostalCodeTextBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // addCustomerLabel
@@ -80,10 +82,10 @@ namespace Appointment_Scheduler_Felix_Berinde
             // 
             // customerPhoneTextBox
             // 
-            this.customerPhoneTextBox.Location = new System.Drawing.Point(187, 288);
+            this.customerPhoneTextBox.Location = new System.Drawing.Point(187, 336);
             this.customerPhoneTextBox.Name = "customerPhoneTextBox";
             this.customerPhoneTextBox.Size = new System.Drawing.Size(181, 20);
-            this.customerPhoneTextBox.TabIndex = 6;
+            this.customerPhoneTextBox.TabIndex = 7;
             // 
             // customerNameLabel
             // 
@@ -115,7 +117,7 @@ namespace Appointment_Scheduler_Felix_Berinde
             // customerPhoneLabel
             // 
             this.customerPhoneLabel.AutoSize = true;
-            this.customerPhoneLabel.Location = new System.Drawing.Point(15, 291);
+            this.customerPhoneLabel.Location = new System.Drawing.Point(15, 339);
             this.customerPhoneLabel.Name = "customerPhoneLabel";
             this.customerPhoneLabel.Size = new System.Drawing.Size(128, 13);
             this.customerPhoneLabel.TabIndex = 8;
@@ -126,7 +128,7 @@ namespace Appointment_Scheduler_Felix_Berinde
             this.backButton.Location = new System.Drawing.Point(12, 390);
             this.backButton.Name = "backButton";
             this.backButton.Size = new System.Drawing.Size(75, 23);
-            this.backButton.TabIndex = 7;
+            this.backButton.TabIndex = 9;
             this.backButton.Text = "Go Back";
             this.backButton.UseVisualStyleBackColor = true;
             this.backButton.Click += new System.EventHandler(this.backButton_Click);
@@ -136,7 +138,7 @@ namespace Appointment_Scheduler_Felix_Berinde
             this.resetButton.Location = new System.Drawing.Point(161, 390);
             this.resetButton.Name = "resetButton";
             this.resetButton.Size = new System.Drawing.Size(75, 23);
-            this.resetButton.TabIndex = 8;
+            this.resetButton.TabIndex = 10;
             this.resetButton.Text = "Reset";
             this.resetButton.UseVisualStyleBackColor = true;
             this.resetButton.Click += new System.EventHandler(this.resetButton_Click);
@@ -146,7 +148,7 @@ namespace Appointment_Scheduler_Felix_Berinde
             this.submitButton.Location = new System.Drawing.Point(314, 390);
             this.submitButton.Name = "submitButton";
             this.submitButton.Size = new System.Drawing.Size(75, 23);
-            this.submitButton.TabIndex = 9;
+            this.submitButton.TabIndex = 8;
             this.submitButton.Text = "Submit";
             this.submitButton.UseVisualStyleBackColor = true;
             this.submitButton.Click += new System.EventHandler(this.submitButton_Click);
@@ -160,10 +162,10 @@ namespace Appointment_Scheduler_Felix_Berinde
             // 
             // customerCountryTextBox
             // 
-            this.customerCountryTextBox.Location = new System.Drawing.Point(187, 244);
+            this.customerCountryTextBox.Location = new System.Drawing.Point(187, 292);
             this.customerCountryTextBox.Name = "customerCountryTextBox";
             this.customerCountryTextBox.Size = new System.Drawing.Size(181, 20);
-            this.customerCountryTextBox.TabIndex = 5;
+            this.customerCountryTextBox.TabIndex = 6;
             // 
             // customerCityLabel
             // 
@@ -177,17 +179,35 @@ namespace Appointment_Scheduler_Felix_Berinde
             // customerCountryLabel
             // 
             this.customerCountryLabel.AutoSize = true;
-            this.customerCountryLabel.Location = new System.Drawing.Point(50, 247);
+            this.customerCountryLabel.Location = new System.Drawing.Point(50, 295);
             this.customerCountryLabel.Name = "customerCountryLabel";
             this.customerCountryLabel.Size = new System.Drawing.Size(93, 13);
             this.customerCountryLabel.TabIndex = 15;
             this.customerCountryLabel.Text = "Customer Country:";
+            // 
+            // postalCodeLbl
+            // 
+            this.postalCodeLbl.AutoSize = true;
+            this.postalCodeLbl.Location = new System.Drawing.Point(69, 251);
+            this.postalCodeLbl.Name = "postalCodeLbl";
+            this.postalCodeLbl.Size = new System.Drawing.Size(67, 13);
+            this.postalCodeLbl.TabIndex = 17;
+            this.postalCodeLbl.Text = "Postal Code:";
+            // 
+            // customerPostalCodeTextBox
+            // 
+            this.customerPostalCodeTextBox.Location = new System.Drawing.Point(187, 248);
+            this.customerPostalCodeTextBox.Name = "customerPostalCodeTextBox";
+            this.customerPostalCodeTextBox.Size = new System.Drawing.Size(181, 20);
+            this.customerPostalCodeTextBox.TabIndex = 5;
             // 
             // AddCustomer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(401, 425);
+            this.Controls.Add(this.postalCodeLbl);
+            this.Controls.Add(this.customerPostalCodeTextBox);
             this.Controls.Add(this.customerCountryLabel);
             this.Controls.Add(this.customerCityLabel);
             this.Controls.Add(this.customerCountryTextBox);
@@ -234,5 +254,7 @@ namespace Appointment_Scheduler_Felix_Berinde
         private System.Windows.Forms.TextBox customerCountryTextBox;
         private System.Windows.Forms.Label customerCityLabel;
         private System.Windows.Forms.Label customerCountryLabel;
+        private System.Windows.Forms.Label postalCodeLbl;
+        private System.Windows.Forms.TextBox customerPostalCodeTextBox;
     }
 }

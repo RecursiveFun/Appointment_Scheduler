@@ -8,61 +8,68 @@ namespace Appointment_Scheduler_Felix_Berinde
 {
     public class AllCustomersGrid
     {
-        private int _ID;
-        private string _Name;
-        private string _Address;
-        private string _Address2;
-        private string _City;
-        private string _Country;
-        private string _Phone;
+        private int _id;
+        private string _name;
+        private string _address;
+        private string _address2;
+        private string _city;
+        private string _postalCode;
+        private string _country;
+        private string _phone;
 
-        public AllCustomersGrid(int ID, string name, string address, string address2, string city, string country, string phone)
+        public AllCustomersGrid(int ID, string name, string address, string address2, string postalCode, string city, string country, string phone)
         {
-            this._ID = ID;
-            this._Name = name;
-            this._Address = address;
-            this._Address2 = address2;
-            this._City = city;
-            this._Country = country;
-            this._Phone = phone;
+            this._id = ID;
+            this._name = name;
+            this._address = address;
+            this._address2 = address2;
+            this._city = city;
+            this._postalCode = postalCode;
+            this._country = country;
+            this._phone = phone;
         }
 
         public int ID
         {
-            get { return _ID; }
-            set { _ID = value; }
+            get { return _id; }
+            set { _id = value; }
         }
 
         public string Name
         {
-            get { return _Name; }
-            set { _Name = value; }
+            get { return _name; }
+            set { _name = value; }
         }
         public string Address
         {
-            get { return _Address; }
-            set { _Address = value; }
+            get { return _address; }
+            set { _address = value; }
         }
         public string Address2
         {
-            get { return _Address2; }
-            set { _Address2 = value; }
+            get { return _address2; }
+            set { _address2 = value; }
         }
 
         public string City
         {
-            get { return _City; }
-            set { _City = value; }
+            get { return _city; }
+            set { _city = value; }
+        }
+        public string PostalCode
+        {
+            get { return _postalCode; }
+            set { _postalCode = value; }
         }
         public string Country
         {
-            get { return _Country; }
-            set { _Country = value; }
+            get { return _country; }
+            set { _country = value; }
         }
         public string Phone
         {
-            get { return _Phone; }
-            set { _Phone = value; }
+            get { return _phone; }
+            set { _phone = value; }
         }
     }
 }

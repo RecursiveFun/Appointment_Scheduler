@@ -60,6 +60,7 @@ namespace Appointment_Scheduler_Felix_Berinde
                 string city = customerCityTextBox.Text;
                 string address = customerAddressTextBox.Text;
                 string address2 = customerAddress2TextBox.Text;
+                string postalCode = customerPostalCodeTextBox.Text;
                 string customer = customerNameTextBox.Text;
                 string phone = customerPhoneTextBox.Text;
 
@@ -67,7 +68,7 @@ namespace Appointment_Scheduler_Felix_Berinde
                     @"INSERT INTO client_schedule.country VALUES (NULL, @country, NOW(), 'user', NOW(), 'user')";
                 const string INSERTCITY = @"INSERT INTO city VALUES (NULL, @city, @countryId, NOW(), 'user', NOW(), 'user') ";
                 const string INSERTADDRESS = @"INSERT INTO address VALUES (NULL, @address, @address2, 
-                                   @cityId, 'not needed', @phone, NOW(), 'user', NOW(), 'user')";
+                                   @cityId, @postalCode, @phone, NOW(), 'user', NOW(), 'user')";
                 const string INSERTCUSTOMER =
                     @"INSERT INTO customer VALUES (NULL, @customerName, @addressId, 1, NOW(), 'user', NOW(), 'user')";
 
@@ -88,6 +89,7 @@ namespace Appointment_Scheduler_Felix_Berinde
                 addressCmd.Parameters.AddWithValue("@cityId", cityId);
                 addressCmd.Parameters.AddWithValue("@address", address);
                 addressCmd.Parameters.AddWithValue("@address2", address2);
+                addressCmd.Parameters.AddWithValue("@postalCode", postalCode);
                 addressCmd.Parameters.AddWithValue("@phone", phone);
                 addressCmd.ExecuteNonQuery();
                 int addressId = (int)addressCmd.LastInsertedId;
