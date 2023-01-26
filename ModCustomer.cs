@@ -15,6 +15,9 @@ namespace Appointment_Scheduler_Felix_Berinde
     public partial class ModCustomer : Form
     {
 
+        //create variable for modify customer Id
+        private int _modId = 0;
+
         public ModCustomer()
         {
             InitializeComponent();
@@ -24,7 +27,7 @@ namespace Appointment_Scheduler_Felix_Berinde
         public ModCustomer(int customerId, AllCustomersGrid customer)
         {
             InitializeComponent();
-            customerId = customer.ID;
+            _modId = customerId;
             customerNameTextBox.Text = customer.Name;
             customerAddressTextBox.Text = customer.Address;
             customerAddress2TextBox.Text = customer.Address2;
@@ -69,10 +72,9 @@ namespace Appointment_Scheduler_Felix_Berinde
             }
             else
             {
-                //TODO: Fix modify submit to database by grabbing the customerId
 
                 //create variables for update commands
-                int customerId = ;
+                int customerId = _modId;
                 string country = customerCountryTextBox.Text;
                 string postalCode = customerPostalCodeTextBox.Text;
                 string city = customerCityTextBox.Text;
