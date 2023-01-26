@@ -120,6 +120,7 @@
     <Compile Include="Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
+    <Compile Include="LogWriter.cs" />
     <Compile Include="ModCustomer.cs">
       <SubType>Form</SubType>
     </Compile>

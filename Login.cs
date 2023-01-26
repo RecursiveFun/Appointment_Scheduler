@@ -36,7 +36,6 @@ namespace Appointment_Scheduler_Felix_Berinde
 
         private void loginButton_Click(object sender, EventArgs e)
         {
-            //TODO:Create a log function to fire off here for login attempts. It must timestamp and it appends or creates a new .txt log file depending on if one exists.
 
             //Check to see if userName and password are over fifty characters
             if (userNameTextBox.Text.Length > 50 || passwordTextBox.Text.Length > 50)
@@ -58,20 +57,23 @@ namespace Appointment_Scheduler_Felix_Berinde
                     //check each user to see if name and/or password match to login
                     foreach (User user in allUsers)
                     {
-                        if (user.UserName == userNameTextBox.Text)
+                        if (user.UserName.ToLower() == userNameTextBox.Text.ToLower())
                         {
-                            if (user.Password == passwordTextBox.Text)
+                            if (user.Password.ToLower() == passwordTextBox.Text.ToLower()) //successful login
                             {
-                                
                                 MessageBox.Show(string.Format(rm.GetString("strSuccessMessage")) +
                                                 userNameTextBox.Text);
                                 Scheduler scheduler = new Scheduler();
                                 scheduler.ShowDialog();
                                 this.Close();
+                                //log successful login attempt
+                                LogWriter.LogWrite(user.UserName + ": Entered their password successfully.");
                             }
                             else
                             {
                                 MessageBox.Show(string.Format(rm.GetString("strFailureMessage")));
+                                //log failed login attempt
+                                LogWriter.LogWrite(user.UserName + ": Attempted to login with an invalid password.");
                             }
                         }
                     }
