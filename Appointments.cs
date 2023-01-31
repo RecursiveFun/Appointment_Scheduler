@@ -14,7 +14,7 @@ namespace Appointment_Scheduler_Felix_Berinde
     public partial class Appointments : Form
     {
 
-        //create temp customer list
+        //create local customer list
         BindingList<Appointment> allAppoint = new BindingList<Appointment>();
 
         public Appointments()
@@ -98,6 +98,19 @@ namespace Appointment_Scheduler_Felix_Berinde
                 //TODO: remove the selected appointment from the templist and database
 
             }
+        }
+
+        private void appointmentsDGV_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            //remove default selection from grid
+            appointmentsDGV.ClearSelection();
+        }
+
+        private void addAppointmentButton_Click(object sender, EventArgs e)
+        {
+            AddAppointment a = new AddAppointment();
+            a.ShowDialog();
+            this.Close();
         }
     }
 }
