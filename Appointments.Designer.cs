@@ -55,6 +55,7 @@ namespace Appointment_Scheduler_Felix_Berinde
             this.appointmentsDGV.Name = "appointmentsDGV";
             this.appointmentsDGV.Size = new System.Drawing.Size(578, 589);
             this.appointmentsDGV.TabIndex = 8;
+            this.appointmentsDGV.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.appointmentsDGV_DataBindingComplete);
             // 
             // deleteAppointmentButton
             // 
@@ -87,6 +88,7 @@ namespace Appointment_Scheduler_Felix_Berinde
             this.addAppointmentButton.TabIndex = 5;
             this.addAppointmentButton.Text = "Add Appointment";
             this.addAppointmentButton.UseVisualStyleBackColor = true;
+            this.addAppointmentButton.Click += new System.EventHandler(this.addAppointmentButton_Click);
             // 
             // backButton
             // 
