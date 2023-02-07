@@ -37,9 +37,9 @@ namespace Appointment_Scheduler_Felix_Berinde
             this.startTimePicker = new System.Windows.Forms.DateTimePicker();
             this.endTimePicker = new System.Windows.Forms.DateTimePicker();
             this.appointmentTypeLabel = new System.Windows.Forms.Label();
-            this.typeTextBox = new System.Windows.Forms.TextBox();
+            this.appointmentTypeTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.descriptionTextBox = new System.Windows.Forms.TextBox();
+            this.appointmentDescriptionTextBox = new System.Windows.Forms.TextBox();
             this.submitButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
@@ -110,12 +110,12 @@ namespace Appointment_Scheduler_Felix_Berinde
             this.appointmentTypeLabel.TabIndex = 7;
             this.appointmentTypeLabel.Text = "Appointment Type:";
             // 
-            // typeTextBox
+            // appointmentTypeTextBox
             // 
-            this.typeTextBox.Location = new System.Drawing.Point(382, 84);
-            this.typeTextBox.Name = "typeTextBox";
-            this.typeTextBox.Size = new System.Drawing.Size(74, 20);
-            this.typeTextBox.TabIndex = 8;
+            this.appointmentTypeTextBox.Location = new System.Drawing.Point(382, 84);
+            this.appointmentTypeTextBox.Name = "appointmentTypeTextBox";
+            this.appointmentTypeTextBox.Size = new System.Drawing.Size(74, 20);
+            this.appointmentTypeTextBox.TabIndex = 8;
             // 
             // label1
             // 
@@ -126,13 +126,13 @@ namespace Appointment_Scheduler_Felix_Berinde
             this.label1.TabIndex = 9;
             this.label1.Text = "Appointment Description:";
             // 
-            // descriptionTextBox
+            // appointmentDescriptionTextBox
             // 
-            this.descriptionTextBox.Location = new System.Drawing.Point(12, 137);
-            this.descriptionTextBox.Multiline = true;
-            this.descriptionTextBox.Name = "descriptionTextBox";
-            this.descriptionTextBox.Size = new System.Drawing.Size(444, 145);
-            this.descriptionTextBox.TabIndex = 10;
+            this.appointmentDescriptionTextBox.Location = new System.Drawing.Point(12, 137);
+            this.appointmentDescriptionTextBox.Multiline = true;
+            this.appointmentDescriptionTextBox.Name = "appointmentDescriptionTextBox";
+            this.appointmentDescriptionTextBox.Size = new System.Drawing.Size(444, 145);
+            this.appointmentDescriptionTextBox.TabIndex = 10;
             // 
             // submitButton
             // 
@@ -189,9 +189,9 @@ namespace Appointment_Scheduler_Felix_Berinde
             this.Controls.Add(this.label2);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.submitButton);
-            this.Controls.Add(this.descriptionTextBox);
+            this.Controls.Add(this.appointmentDescriptionTextBox);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.typeTextBox);
+            this.Controls.Add(this.appointmentTypeTextBox);
             this.Controls.Add(this.appointmentTypeLabel);
             this.Controls.Add(this.endTimePicker);
             this.Controls.Add(this.startTimePicker);
@@ -218,9 +218,9 @@ namespace Appointment_Scheduler_Felix_Berinde
         private System.Windows.Forms.DateTimePicker startTimePicker;
         private System.Windows.Forms.DateTimePicker endTimePicker;
         private System.Windows.Forms.Label appointmentTypeLabel;
-        private System.Windows.Forms.TextBox typeTextBox;
+        private System.Windows.Forms.TextBox appointmentTypeTextBox;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox descriptionTextBox;
+        private System.Windows.Forms.TextBox appointmentDescriptionTextBox;
         private System.Windows.Forms.Button submitButton;
         private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.Label label2;

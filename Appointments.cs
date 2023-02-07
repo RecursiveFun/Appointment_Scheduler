@@ -14,7 +14,7 @@ namespace Appointment_Scheduler_Felix_Berinde
     public partial class Appointments : Form
     {
 
-        //create local customer list
+        //create local appointment list
         BindingList<Appointment> allAppoint = new BindingList<Appointment>();
 
         public Appointments()
@@ -58,10 +58,29 @@ namespace Appointment_Scheduler_Felix_Berinde
             appointmentsDGV.Columns["createDate"].Visible = false;
             appointmentsDGV.Columns["lastUpdate"].Visible = false;
             appointmentsDGV.Columns["lastUpdatedBy"].Visible = false;
+            
+
+            //Change column format in grid for datetimes to display the time
+            appointmentsDGV.Columns[9].DefaultCellStyle.Format = "MM/dd/yyyy HH:mm:ss";
+            appointmentsDGV.Columns[10].DefaultCellStyle.Format = "MM/dd/yyyy HH:mm:ss";
+
+            //Autosize columns to  length of data in each cell
+            appointmentsDGV.AutoResizeColumns();
+            appointmentsDGV.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+
+
         }
 
-        private void backButton_Click(object sender, EventArgs e)
+        private void appointmentsDGV_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
+            //remove default selection from grid
+            appointmentsDGV.ClearSelection();
+        }
+
+        private void addAppointmentButton_Click(object sender, EventArgs e)
+        {
+            AddAppointment a = new AddAppointment();
+            a.ShowDialog();
             this.Close();
         }
 
@@ -100,17 +119,10 @@ namespace Appointment_Scheduler_Felix_Berinde
             }
         }
 
-        private void appointmentsDGV_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        private void backButton_Click(object sender, EventArgs e)
         {
-            //remove default selection from grid
-            appointmentsDGV.ClearSelection();
-        }
-
-        private void addAppointmentButton_Click(object sender, EventArgs e)
-        {
-            AddAppointment a = new AddAppointment();
-            a.ShowDialog();
             this.Close();
         }
+
     }
 }

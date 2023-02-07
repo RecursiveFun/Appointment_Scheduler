@@ -41,6 +41,7 @@ namespace Appointment_Scheduler_Felix_Berinde
 
         private void submitButton_Click(object sender, EventArgs e)
         {
+            //TODO: Check to see if the textboxes don't exceed database limits for each value being inserted
             //check if textboxes are empty (keep address2 optional)
             if (customerNameTextBox.Text == string.Empty || customerAddressTextBox.Text == string.Empty
                                                          || customerCityTextBox.Text == string.Empty
@@ -63,25 +64,30 @@ namespace Appointment_Scheduler_Felix_Berinde
                 string postalCode = customerPostalCodeTextBox.Text;
                 string customer = customerNameTextBox.Text;
                 string phone = customerPhoneTextBox.Text;
+                string user = "user"; /*Placeholder for now I eventually would like the currently logged in user
+                * stored as this value, but this is currently not required for the project */
+                
 
                 const string INSERTCOUNTRY =
-                    @"INSERT INTO client_schedule.country VALUES (NULL, @country, NOW(), 'user', NOW(), 'user')";
-                const string INSERTCITY = @"INSERT INTO city VALUES (NULL, @city, @countryId, NOW(), 'user', NOW(), 'user') ";
+                    @"INSERT INTO client_schedule.country VALUES (NULL, @country, NOW(), @user, NOW(), @user)";
+                const string INSERTCITY = @"INSERT INTO city VALUES (NULL, @city, @countryId, NOW(), @user, NOW(), @user) ";
                 const string INSERTADDRESS = @"INSERT INTO address VALUES (NULL, @address, @address2, 
-                                   @cityId, @postalCode, @phone, NOW(), 'user', NOW(), 'user')";
+                                   @cityId, @postalCode, @phone, NOW(), @user, NOW(), @user)";
                 const string INSERTCUSTOMER =
-                    @"INSERT INTO customer VALUES (NULL, @customerName, @addressId, 1, NOW(), 'user', NOW(), 'user')";
+                    @"INSERT INTO customer VALUES (NULL, @customerName, @addressId, 1, NOW(), @user, NOW(), @user)";
 
 
                 //create insert commands
                 MySqlCommand countryCmd = new MySqlCommand(INSERTCOUNTRY, DBConnection.conn);
                 countryCmd.Parameters.AddWithValue("@country", country);
+                countryCmd.Parameters.AddWithValue("@user", user);
                 countryCmd.ExecuteNonQuery();
                 int countryId = (int)countryCmd.LastInsertedId;
 
                 MySqlCommand cityCmd = new MySqlCommand(INSERTCITY, DBConnection.conn);
                 cityCmd.Parameters.AddWithValue("@countryId", countryId);
                 cityCmd.Parameters.AddWithValue("@city", city);
+                cityCmd.Parameters.AddWithValue("@user", user);
                 cityCmd.ExecuteNonQuery();
                 int cityId = (int)cityCmd.LastInsertedId;
 
@@ -91,12 +97,14 @@ namespace Appointment_Scheduler_Felix_Berinde
                 addressCmd.Parameters.AddWithValue("@address2", address2);
                 addressCmd.Parameters.AddWithValue("@postalCode", postalCode);
                 addressCmd.Parameters.AddWithValue("@phone", phone);
+                addressCmd.Parameters.AddWithValue("@user", user);
                 addressCmd.ExecuteNonQuery();
                 int addressId = (int)addressCmd.LastInsertedId;
 
                 MySqlCommand customerCmd = new MySqlCommand(INSERTCUSTOMER, DBConnection.conn);
                 customerCmd.Parameters.AddWithValue("@addressId", addressId);
                 customerCmd.Parameters.AddWithValue("@customerName", customer);
+                customerCmd.Parameters.AddWithValue("@user", user);
                 customerCmd.ExecuteNonQuery();
                 int customerId = (int)customerCmd.LastInsertedId;
 

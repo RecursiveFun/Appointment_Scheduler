@@ -61,6 +61,8 @@ namespace Appointment_Scheduler_Felix_Berinde
 
         private void submitButton_Click(object sender, EventArgs e)
         {
+            //TODO: Check to see if the textboxes don't exceed database limits for each value being updated
+
             //check if textboxes are empty (keep address2 optional)
             if (customerNameTextBox.Text == string.Empty || customerAddressTextBox.Text == string.Empty
                                                          || customerCityTextBox.Text == string.Empty
@@ -82,6 +84,8 @@ namespace Appointment_Scheduler_Felix_Berinde
                 string address2 = customerAddress2TextBox.Text;
                 string customer = customerNameTextBox.Text;
                 string phone = customerPhoneTextBox.Text;
+                string user = "user"; /*Placeholder for now I eventually would like the currently logged in user
+                * to take this value, but this is currently not required for the project */
 
 
                 //create insert statement

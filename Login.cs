@@ -19,13 +19,14 @@ namespace Appointment_Scheduler_Felix_Berinde
 {
     public partial class Login : Form
     {
+
         //Create ResourceManager for multi-lingual string data for Globalization requirement and switching between languages
         ResourceManager rm = new ResourceManager(typeof(Login));
 
-
         public Login()
         {
-            InitializeComponent();
+            
+        InitializeComponent();
 
         }
 
@@ -65,9 +66,11 @@ namespace Appointment_Scheduler_Felix_Berinde
                                                 userNameTextBox.Text);
                                 Scheduler scheduler = new Scheduler();
                                 scheduler.ShowDialog();
-                                this.Close();
+                                this.Hide();
                                 //log successful login attempt
                                 LogWriter.LogWrite(user.UserName + ": Entered their password successfully.");
+
+                                CurrentUser.UserID = user.Id;
                             }
                             else
                             {
