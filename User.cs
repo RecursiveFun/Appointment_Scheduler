@@ -15,6 +15,12 @@ namespace Appointment_Scheduler_Felix_Berinde
         private DateTime _lastUpdate;
         private string _lastUpdateBy;
 
+        //constructor for just login data
+        public User(int userID, string userName)
+        {
+            this._userID = userID;
+            this._userName = userName;
+        }
 
         // constructor without update params
         public User(int userID, string userName, string password, bool active, DateTime createDate, string createBy)

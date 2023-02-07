@@ -53,7 +53,7 @@ namespace Appointment_Scheduler_Felix_Berinde
             this.appointmentsDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.appointmentsDGV.Location = new System.Drawing.Point(220, 36);
             this.appointmentsDGV.Name = "appointmentsDGV";
-            this.appointmentsDGV.Size = new System.Drawing.Size(578, 589);
+            this.appointmentsDGV.Size = new System.Drawing.Size(597, 589);
             this.appointmentsDGV.TabIndex = 8;
             this.appointmentsDGV.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.appointmentsDGV_DataBindingComplete);
             // 
@@ -104,7 +104,7 @@ namespace Appointment_Scheduler_Felix_Berinde
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(819, 632);
+            this.ClientSize = new System.Drawing.Size(829, 632);
             this.Controls.Add(this.backButton);
             this.Controls.Add(this.AppointmentLabel);
             this.Controls.Add(this.appointmentsDGV);
@@ -112,8 +112,8 @@ namespace Appointment_Scheduler_Felix_Berinde
             this.Controls.Add(this.modAppointmentButton);
             this.Controls.Add(this.addAppointmentButton);
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(835, 671);
-            this.MinimumSize = new System.Drawing.Size(835, 671);
+            this.MaximumSize = new System.Drawing.Size(845, 671);
+            this.MinimumSize = new System.Drawing.Size(845, 671);
             this.Name = "Appointments";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Appointment";

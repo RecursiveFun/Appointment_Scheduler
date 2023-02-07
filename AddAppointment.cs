@@ -15,8 +15,6 @@ namespace Appointment_Scheduler_Felix_Berinde
 {
     public partial class AddAppointment : Form
     {
-        private int customerIndex = -1;
-        private int userId = -1;
         public AddAppointment()
         {
             InitializeComponent();
@@ -57,9 +55,12 @@ namespace Appointment_Scheduler_Felix_Berinde
 
         private void submitButton_Click(object sender, EventArgs e)
         {
+            //customer index  of selected customer array to mirror the customer BindingList index when creating the appointment
+            int customerIndex = -1;
+
             //testing index of selected customer array to mirror the customer BindingList index when creating the appointment
             customerIndex = CustomerList.SelectedIndex;
-            MessageBox.Show(customerIndex.ToString());
+            appointmentTitleTextBox.Text = CurrentUser.UserID.ToString();
         }
     }
 }

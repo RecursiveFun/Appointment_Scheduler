@@ -17,6 +17,14 @@ namespace Appointment_Scheduler_Felix_Berinde
             InitializeComponent();
         }
 
+        //TODO: Create a method that returns a datatable
+
+        //Populate datatable using a mysql data adapter
+
+        //set datasource for the datagrid to the datatable
+
+
+
         private void backButton_Click(object sender, EventArgs e)
         {
             this.Close();

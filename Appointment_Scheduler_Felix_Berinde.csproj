@@ -112,6 +112,7 @@
     </Compile>
     <Compile Include="City.cs" />
     <Compile Include="Country.cs" />
+    <Compile Include="CurrentUser.cs" />
     <Compile Include="Customer.cs" />
     <Compile Include="Customers.cs">
       <SubType>Form</SubType>
