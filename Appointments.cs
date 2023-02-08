@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Appointment_Scheduler_Felix_Berinde.Database;
+using MySql.Data.MySqlClient;
 
 namespace Appointment_Scheduler_Felix_Berinde
 {
@@ -80,8 +81,7 @@ namespace Appointment_Scheduler_Felix_Berinde
         private void addAppointmentButton_Click(object sender, EventArgs e)
         {
             AddAppointment a = new AddAppointment();
-            a.ShowDialog();
-            this.Close();
+            a.Show();
         }
 
         private void modAppointmentButton_Click(object sender, EventArgs e)
@@ -116,6 +116,27 @@ namespace Appointment_Scheduler_Felix_Berinde
             {
                 //TODO: remove the selected appointment from the templist and database
 
+                //remove appointment from local list
+                appointmentsDGV.Rows.RemoveAt(appointmentsDGV.SelectedRows[0].Index);
+                allAppoint.Remove(A);
+
+                //open the connection
+                DBConnection.StartConnection();
+
+                //create variables for delete command
+                int ID = A.ID;
+                const string DELETEAPPOINTMENT = @"DELETE FROM client_schedule.appointment WHERE appointmentId = @ID;";
+
+                //create delete command
+                MySqlCommand deleteAppointmentCmd = new MySqlCommand(DELETEAPPOINTMENT, DBConnection.conn);
+                deleteAppointmentCmd.Parameters.AddWithValue("@ID", ID);
+                deleteAppointmentCmd.ExecuteNonQuery();
+
+                //close the connection
+                DBConnection.CloseConnection();
+
+                //refresh the grid to show that the deletion worked
+                appointmentsDGV.Refresh();
             }
         }
 

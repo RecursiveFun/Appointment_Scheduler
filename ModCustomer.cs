@@ -39,9 +39,9 @@ namespace Appointment_Scheduler_Felix_Berinde
 
         private void backButton_Click(object sender, EventArgs e)
         {
-            this.Close();
             Customers customers = new Customers();
-            customers.ShowDialog();
+            customers.Show();
+            this.Close();
         }
 
         private void resetButton_Click(object sender, EventArgs e)
@@ -84,7 +84,7 @@ namespace Appointment_Scheduler_Felix_Berinde
                 string address2 = customerAddress2TextBox.Text;
                 string customer = customerNameTextBox.Text;
                 string phone = customerPhoneTextBox.Text;
-                string user = "user"; /*Placeholder for now I eventually would like the currently logged in user
+                string user = Login._CurrUser.UserName; /*Placeholder for now I eventually would like the currently logged in user
                 * to take this value, but this is currently not required for the project */
 
 
@@ -124,7 +124,7 @@ namespace Appointment_Scheduler_Felix_Berinde
 
                 //open customer form
                 Customers customerForm = new Customers();
-                customerForm.ShowDialog();
+                customerForm.Show();
 
                 this.Close();
                 

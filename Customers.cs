@@ -59,7 +59,7 @@ namespace Appointment_Scheduler_Felix_Berinde
         private void addCustomerButton_Click(object sender, EventArgs e)
         {
             AddCustomer customer = new AddCustomer();
-            customer.ShowDialog();
+            customer.Show();
             this.Close();
         }
 
@@ -76,7 +76,8 @@ namespace Appointment_Scheduler_Felix_Berinde
             AllCustomersGrid c = customersDGV.CurrentRow.DataBoundItem as AllCustomersGrid;
             this.Close();
             ModCustomer customer = new ModCustomer(c.ID, c);
-            customer.ShowDialog();
+            customer.Show();
+            
         }
 
         private void customersDGV_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)

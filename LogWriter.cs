@@ -24,7 +24,7 @@ namespace Appointment_Scheduler_Felix_Berinde
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Logging error.");
+                MessageBox.Show("Logging error. ", ex.ToString());
             }
         }
 
@@ -40,7 +40,7 @@ namespace Appointment_Scheduler_Felix_Berinde
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Logging error.");
+                MessageBox.Show("Logging error. ", ex.ToString());
             }
         }
     }

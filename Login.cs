@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Configuration;
 using System.Drawing.Text;
+using System.Globalization;
 using MySql.Data.MySqlClient;
 using Appointment_Scheduler_Felix_Berinde.Database;
 using System.Resources;
@@ -19,6 +20,8 @@ namespace Appointment_Scheduler_Felix_Berinde
 {
     public partial class Login : Form
     {
+        //create a variable to keep track of logged in userId
+        public static User _CurrUser { get; set; }
 
         //Create ResourceManager for multi-lingual string data for Globalization requirement and switching between languages
         ResourceManager rm = new ResourceManager(typeof(Login));
@@ -26,7 +29,8 @@ namespace Appointment_Scheduler_Felix_Berinde
         public Login()
         {
             
-        InitializeComponent();
+            InitializeComponent();
+
 
         }
 
@@ -65,12 +69,14 @@ namespace Appointment_Scheduler_Felix_Berinde
                                 MessageBox.Show(string.Format(rm.GetString("strSuccessMessage")) +
                                                 userNameTextBox.Text);
                                 Scheduler scheduler = new Scheduler();
-                                scheduler.ShowDialog();
+                                scheduler.Show();
                                 this.Hide();
                                 //log successful login attempt
                                 LogWriter.LogWrite(user.UserName + ": Entered their password successfully.");
 
-                                CurrentUser.UserID = user.Id;
+                                //keep track of currently logged in userId
+                                _CurrUser = user;
+                                Console.WriteLine(_CurrUser.ToString());
                             }
                             else
                             {
