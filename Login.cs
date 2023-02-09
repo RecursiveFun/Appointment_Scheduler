@@ -20,7 +20,7 @@ namespace Appointment_Scheduler_Felix_Berinde
 {
     public partial class Login : Form
     {
-        //create a variable to keep track of logged in userId
+        //create a variable to keep track of logged in user
         public static User _CurrUser { get; set; }
 
         //Create ResourceManager for multi-lingual string data for Globalization requirement and switching between languages

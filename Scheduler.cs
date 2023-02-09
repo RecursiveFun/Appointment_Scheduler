@@ -24,19 +24,19 @@ namespace Appointment_Scheduler_Felix_Berinde
         private void customerButton_Click(object sender, EventArgs e)
         {
             Customers customers = new Customers();
-            customers.ShowDialog();
+            customers.Show();
         }
 
         private void appointmentButton_Click(object sender, EventArgs e)
         {
             Appointments appointment= new Appointments();
-            appointment.ShowDialog();
+            appointment.Show();
         }
 
         private void calenderButton_Click(object sender, EventArgs e)
         {
             Calendars calendar = new Calendars();
-            calendar.ShowDialog();
+            calendar.Show();
         }
     }
 }

@@ -82,6 +82,7 @@ namespace Appointment_Scheduler_Felix_Berinde
         {
             AddAppointment a = new AddAppointment();
             a.Show();
+            this.Close();
         }
 
         private void modAppointmentButton_Click(object sender, EventArgs e)
@@ -96,6 +97,10 @@ namespace Appointment_Scheduler_Felix_Berinde
              Appointment A = appointmentsDGV.CurrentRow.DataBoundItem as Appointment;
 
              //TODO: modify the selected appointment from the templist and database
+
+             this.Close();
+             ModAppointment appointment = new ModAppointment(A);
+             appointment.Show();
 
         }
 
@@ -114,8 +119,6 @@ namespace Appointment_Scheduler_Felix_Berinde
             if (DialogResult.Yes == MessageBox.Show("Are You Sure?", "Confirmation", MessageBoxButtons.YesNo,
                     MessageBoxIcon.Warning))
             {
-                //TODO: remove the selected appointment from the templist and database
-
                 //remove appointment from local list
                 appointmentsDGV.Rows.RemoveAt(appointmentsDGV.SelectedRows[0].Index);
                 allAppoint.Remove(A);

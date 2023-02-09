@@ -16,12 +16,16 @@ namespace Appointment_Scheduler_Felix_Berinde
 {
     public partial class AddAppointment : Form
     {
-        private DateTime startDate;
-        private DateTime endDate;
+        //create private variables
+        private DateTime startDateTime;
+        private DateTime endDateTime;
+        private ArrayList customerArray = new ArrayList();
 
         public AddAppointment()
         {
             InitializeComponent();
+
+            //TODO: Fix datepicker/timepicker to display the correct end datetime
 
             //set format for end and start time pickers
             startTimePicker.Format = DateTimePickerFormat.Time;
@@ -34,18 +38,27 @@ namespace Appointment_Scheduler_Felix_Berinde
             BindingList<Customer> c = new BindingList<Customer>();
             c = DBConnection.GetAllCustomers();
 
+
+            //display the customer name only
+            CustomerList.DisplayMember = "Name";
+            CustomerList.ValueMember = "CustomerID";
+
             //pull the name of each customer and put it into a new array
-            ArrayList customerArray = new ArrayList();
             foreach (var customer in c)
             {
-                customerArray.Add(customer.Name);
+                customerArray.Add(new Customer
+                {
+                    CustomerID = customer.CustomerID,
+                    Name = customer.Name
+                });
             }
+
             //set the DataSource of the listbox to the array of names
             CustomerList.DataSource = customerArray;
 
             //combine date picker and time picker for start and end appointment times
-            startDate = startDatePicker.Value.Date + startTimePicker.Value.TimeOfDay;
-            endDate = endDatePicker.Value.Date + endTimePicker.Value.TimeOfDay;
+            startDateTime = startDatePicker.Value.Date + startTimePicker.Value.TimeOfDay;
+            endDateTime = endDatePicker.Value.Date + endTimePicker.Value.TimeOfDay;
 
 
         }
@@ -57,13 +70,19 @@ namespace Appointment_Scheduler_Felix_Berinde
 
         private void submitButton_Click(object sender, EventArgs e)
         {
-            //TODO: Fix customerIndex as this solution for the indexing problem is no good
-            
-            //create customer index of selected customer array to mirror the customer BindingList index when creating the appointment
-            int customerIndex = -1;
 
-            //set customerIndex to the selected lists index
-            customerIndex = CustomerList.SelectedIndex;
+            int customerID;
+
+            if (CustomerList.SelectedIndex != -1)
+            {
+                var selectedCustomer = (Customer)CustomerList.SelectedItem;
+                customerID = selectedCustomer.CustomerID;
+            }
+            else
+            {
+                MessageBox.Show("Please select a customer from the list.");
+                return;
+            }
 
             //create db connection
             DBConnection.StartConnection();
@@ -73,15 +92,15 @@ namespace Appointment_Scheduler_Felix_Berinde
             string title = appointmentTitleTextBox.Text;
             string description = appointmentDescriptionTextBox.Text;
             string type = appointmentTypeTextBox.Text;
-            DateTime start = startDate;
-            DateTime end = endDate;
+            DateTime start = startDateTime;
+            DateTime end = endDateTime;
             
             const string INSERTAPPOINTMENT = @"INSERT INTO client_schedule.appointment VALUES (NULL, @customerIndex, @currentUserId, @title,
             @description, 'not needed', 'not needed', @type, 'not needed', @start, @end, NOW(), 'user', NOW(), 'user')";
 
             //create insert commands
             MySqlCommand appCmd = new MySqlCommand(INSERTAPPOINTMENT, DBConnection.conn);
-            appCmd.Parameters.AddWithValue("@customerIndex", customerIndex);
+            appCmd.Parameters.AddWithValue("@customerIndex", customerID);
             appCmd.Parameters.AddWithValue("@currentUserId", currentUser.Id);
             appCmd.Parameters.AddWithValue("@title", title);
             appCmd.Parameters.AddWithValue("@description", description);

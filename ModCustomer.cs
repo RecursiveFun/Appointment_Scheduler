@@ -24,10 +24,10 @@ namespace Appointment_Scheduler_Felix_Berinde
         }
 
         //param loaded constructor
-        public ModCustomer(int customerId, AllCustomersGrid customer)
+        public ModCustomer(AllCustomersGrid customer)
         {
             InitializeComponent();
-            _modId = customerId;
+            _modId = customer.ID;
             customerNameTextBox.Text = customer.Name;
             customerAddressTextBox.Text = customer.Address;
             customerAddress2TextBox.Text = customer.Address2;
