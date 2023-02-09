@@ -128,6 +128,12 @@
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
     <Compile Include="LogWriter.cs" />
+    <Compile Include="ModAppointment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModAppointment.Designer.cs">
+      <DependentUpon>ModAppointment.cs</DependentUpon>
+    </Compile>
     <Compile Include="ModCustomer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -167,6 +173,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModAppointment.resx">
+      <DependentUpon>ModAppointment.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ModCustomer.resx">
       <DependentUpon>ModCustomer.cs</DependentUpon>

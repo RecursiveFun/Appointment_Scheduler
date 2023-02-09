@@ -75,7 +75,7 @@ namespace Appointment_Scheduler_Felix_Berinde
             //get the selected row
             AllCustomersGrid c = customersDGV.CurrentRow.DataBoundItem as AllCustomersGrid;
             this.Close();
-            ModCustomer customer = new ModCustomer(c.ID, c);
+            ModCustomer customer = new ModCustomer(c);
             customer.Show();
             
         }

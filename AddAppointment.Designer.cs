@@ -38,11 +38,11 @@ namespace Appointment_Scheduler_Felix_Berinde
             this.endTimePicker = new System.Windows.Forms.DateTimePicker();
             this.appointmentTypeLabel = new System.Windows.Forms.Label();
             this.appointmentTypeTextBox = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.appointmentDescriptionLabel = new System.Windows.Forms.Label();
             this.appointmentDescriptionTextBox = new System.Windows.Forms.TextBox();
             this.submitButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
+            this.customerListLabel = new System.Windows.Forms.Label();
             this.appointmentTitleTextBox = new System.Windows.Forms.TextBox();
             this.appointmentTitleLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -117,14 +117,14 @@ namespace Appointment_Scheduler_Felix_Berinde
             this.appointmentTypeTextBox.Size = new System.Drawing.Size(74, 20);
             this.appointmentTypeTextBox.TabIndex = 8;
             // 
-            // label1
+            // appointmentDescriptionLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 121);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(125, 13);
-            this.label1.TabIndex = 9;
-            this.label1.Text = "Appointment Description:";
+            this.appointmentDescriptionLabel.AutoSize = true;
+            this.appointmentDescriptionLabel.Location = new System.Drawing.Point(12, 121);
+            this.appointmentDescriptionLabel.Name = "appointmentDescriptionLabel";
+            this.appointmentDescriptionLabel.Size = new System.Drawing.Size(125, 13);
+            this.appointmentDescriptionLabel.TabIndex = 9;
+            this.appointmentDescriptionLabel.Text = "Appointment Description:";
             // 
             // appointmentDescriptionTextBox
             // 
@@ -154,14 +154,14 @@ namespace Appointment_Scheduler_Felix_Berinde
             this.cancelButton.UseVisualStyleBackColor = true;
             this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
             // 
-            // label2
+            // customerListLabel
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 6);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(54, 13);
-            this.label2.TabIndex = 13;
-            this.label2.Text = "Customer:";
+            this.customerListLabel.AutoSize = true;
+            this.customerListLabel.Location = new System.Drawing.Point(12, 6);
+            this.customerListLabel.Name = "customerListLabel";
+            this.customerListLabel.Size = new System.Drawing.Size(54, 13);
+            this.customerListLabel.TabIndex = 13;
+            this.customerListLabel.Text = "Customer:";
             // 
             // appointmentTitleTextBox
             // 
@@ -186,11 +186,11 @@ namespace Appointment_Scheduler_Felix_Berinde
             this.ClientSize = new System.Drawing.Size(469, 324);
             this.Controls.Add(this.appointmentTitleTextBox);
             this.Controls.Add(this.appointmentTitleLabel);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.customerListLabel);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.submitButton);
             this.Controls.Add(this.appointmentDescriptionTextBox);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.appointmentDescriptionLabel);
             this.Controls.Add(this.appointmentTypeTextBox);
             this.Controls.Add(this.appointmentTypeLabel);
             this.Controls.Add(this.endTimePicker);
@@ -219,11 +219,11 @@ namespace Appointment_Scheduler_Felix_Berinde
         private System.Windows.Forms.DateTimePicker endTimePicker;
         private System.Windows.Forms.Label appointmentTypeLabel;
         private System.Windows.Forms.TextBox appointmentTypeTextBox;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label appointmentDescriptionLabel;
         private System.Windows.Forms.TextBox appointmentDescriptionTextBox;
         private System.Windows.Forms.Button submitButton;
         private System.Windows.Forms.Button cancelButton;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label customerListLabel;
         private System.Windows.Forms.TextBox appointmentTitleTextBox;
         private System.Windows.Forms.Label appointmentTitleLabel;
     }

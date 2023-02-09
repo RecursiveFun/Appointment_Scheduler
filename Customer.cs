@@ -19,6 +19,7 @@ namespace Appointment_Scheduler_Felix_Berinde
         public int CustomerID
         {
             get { return _customerID; }
+            set { _customerID = value; }
         }
 
         public string Name
