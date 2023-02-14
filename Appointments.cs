@@ -96,8 +96,6 @@ namespace Appointment_Scheduler_Felix_Berinde
             //get the selected row
              Appointment A = appointmentsDGV.CurrentRow.DataBoundItem as Appointment;
 
-             //TODO: modify the selected appointment from the templist and database
-
              this.Close();
              ModAppointment appointment = new ModAppointment(A);
              appointment.Show();

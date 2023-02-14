@@ -14,19 +14,17 @@ namespace Appointment_Scheduler_Felix_Berinde
 {
     public partial class ModAppointment : Form
     {
-
         //TODO: Fix datepicker/timepicker to display the correct end datetime
 
         //create private variables
         private DateTime startDateTime;
         private DateTime endDateTime;
-        private ArrayList customerArray = new ArrayList();
+        private BindingList<Customer> customerArray = new BindingList<Customer>();
         public int _appointId = 0;
 
         public ModAppointment()
         {
             InitializeComponent();
-
         }
 
         public ModAppointment(Appointment appointment)
@@ -39,25 +37,12 @@ namespace Appointment_Scheduler_Felix_Berinde
             startTimePicker.ShowUpDown = true;
             endTimePicker.ShowUpDown = true;
 
-
             //create and get a list of all customers to display in listbox as the customer selection
-            BindingList<Customer> c = new BindingList<Customer>();
-            c = DBConnection.GetAllCustomers();
-
+            customerArray = DBConnection.GetAllCustomers();
 
             //display the customer name only
             CustomerList.DisplayMember = "Name";
             CustomerList.ValueMember = "CustomerID";
-
-            //pull the name of each customer and put it into a new array
-            foreach (var customer in c)
-            {
-                customerArray.Add(new Customer
-                {
-                    CustomerID = customer.CustomerID,
-                    Name = customer.Name
-                });
-            }
 
             //set the DataSource of the listbox to the array of names
             CustomerList.DataSource = customerArray;
@@ -66,14 +51,20 @@ namespace Appointment_Scheduler_Felix_Berinde
             startDateTime = startDatePicker.Value.Date + startTimePicker.Value.TimeOfDay;
             endDateTime = endDatePicker.Value.Date + endTimePicker.Value.TimeOfDay;
 
-            //TODO: Fix the CustomerList to have the correct customer selected
-
+            //assign values
             _appointId = appointment.ID;
             startTimePicker.Value = appointment.Start;
             endTimePicker.Value = appointment.End;
             appointmentTitleTextBox.Text = appointment.Title;
             appointmentTypeTextBox.Text = appointment.Type;
             appointmentDescriptionTextBox.Text = appointment.Description;
+
+            //set the selected item in the CustomerList to the customer associated with the appointment
+            CustomerList.SelectedValue = appointment.CustomerID;
+
+
+            //TODO: Finish Modify Appointment submission
+
 
         }
 

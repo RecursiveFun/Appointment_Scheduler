@@ -94,9 +94,10 @@ namespace Appointment_Scheduler_Felix_Berinde
             string type = appointmentTypeTextBox.Text;
             DateTime start = startDateTime;
             DateTime end = endDateTime;
+            string userName = currentUser.UserName;
             
             const string INSERTAPPOINTMENT = @"INSERT INTO client_schedule.appointment VALUES (NULL, @customerIndex, @currentUserId, @title,
-            @description, 'not needed', 'not needed', @type, 'not needed', @start, @end, NOW(), 'user', NOW(), 'user')";
+            @description, 'not needed', 'not needed', @type, 'not needed', @start, @end, NOW(), @user, NOW(), @user)";
 
             //create insert commands
             MySqlCommand appCmd = new MySqlCommand(INSERTAPPOINTMENT, DBConnection.conn);
@@ -105,6 +106,7 @@ namespace Appointment_Scheduler_Felix_Berinde
             appCmd.Parameters.AddWithValue("@title", title);
             appCmd.Parameters.AddWithValue("@description", description);
             appCmd.Parameters.AddWithValue("@type", type);
+            appCmd.Parameters.AddWithValue("@user", userName);
             appCmd.Parameters.AddWithValue("@start", start);
             appCmd.Parameters.AddWithValue("@end", end);
             appCmd.ExecuteNonQuery();
