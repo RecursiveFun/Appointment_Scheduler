@@ -17,9 +17,9 @@ namespace Appointment_Scheduler_Felix_Berinde
             m_exePath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             try
             {
-                using (StreamWriter write = File.AppendText(m_exePath + "\\" + "UserLoginLog.txt"))
+                using (StreamWriter w = File.AppendText(m_exePath + "\\" + "UserLoginLog.txt"))
                 {
-                    Log(logMessage, write);
+                    Log(logMessage, w);
                 }
             }
             catch (Exception ex)

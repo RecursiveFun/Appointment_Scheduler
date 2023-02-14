@@ -57,6 +57,7 @@ namespace Appointment_Scheduler_Felix_Berinde
                 DBConnection.StartConnection();
 
                 //create variables for insert commands
+                User currentUser = Login._CurrUser;
                 string country = customerCountryTextBox.Text;
                 string city = customerCityTextBox.Text;
                 string address = customerAddressTextBox.Text;
@@ -64,7 +65,7 @@ namespace Appointment_Scheduler_Felix_Berinde
                 string postalCode = customerPostalCodeTextBox.Text;
                 string customer = customerNameTextBox.Text;
                 string phone = customerPhoneTextBox.Text;
-                string user = Login._CurrUser.UserName;
+                string userName = currentUser.UserName;
                 
 
                 const string INSERTCOUNTRY =
@@ -79,14 +80,14 @@ namespace Appointment_Scheduler_Felix_Berinde
                 //create insert commands
                 MySqlCommand countryCmd = new MySqlCommand(INSERTCOUNTRY, DBConnection.conn);
                 countryCmd.Parameters.AddWithValue("@country", country);
-                countryCmd.Parameters.AddWithValue("@user", user);
+                countryCmd.Parameters.AddWithValue("@user", userName);
                 countryCmd.ExecuteNonQuery();
                 int countryId = (int)countryCmd.LastInsertedId;
 
                 MySqlCommand cityCmd = new MySqlCommand(INSERTCITY, DBConnection.conn);
                 cityCmd.Parameters.AddWithValue("@countryId", countryId);
                 cityCmd.Parameters.AddWithValue("@city", city);
-                cityCmd.Parameters.AddWithValue("@user", user);
+                cityCmd.Parameters.AddWithValue("@user", userName);
                 cityCmd.ExecuteNonQuery();
                 int cityId = (int)cityCmd.LastInsertedId;
 
@@ -96,14 +97,14 @@ namespace Appointment_Scheduler_Felix_Berinde
                 addressCmd.Parameters.AddWithValue("@address2", address2);
                 addressCmd.Parameters.AddWithValue("@postalCode", postalCode);
                 addressCmd.Parameters.AddWithValue("@phone", phone);
-                addressCmd.Parameters.AddWithValue("@user", user);
+                addressCmd.Parameters.AddWithValue("@user", userName);
                 addressCmd.ExecuteNonQuery();
                 int addressId = (int)addressCmd.LastInsertedId;
 
                 MySqlCommand customerCmd = new MySqlCommand(INSERTCUSTOMER, DBConnection.conn);
                 customerCmd.Parameters.AddWithValue("@addressId", addressId);
                 customerCmd.Parameters.AddWithValue("@customerName", customer);
-                customerCmd.Parameters.AddWithValue("@user", user);
+                customerCmd.Parameters.AddWithValue("@user", userName);
                 customerCmd.ExecuteNonQuery();
                 int customerId = (int)customerCmd.LastInsertedId;
 
