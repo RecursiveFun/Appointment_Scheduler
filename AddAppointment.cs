@@ -60,7 +60,8 @@ namespace Appointment_Scheduler_Felix_Berinde
             startDateTime = startDatePicker.Value.Date + startTimePicker.Value.TimeOfDay;
             endDateTime = endDatePicker.Value.Date + endTimePicker.Value.TimeOfDay;
 
-
+            //remove default selection
+            CustomerList.ClearSelected();
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
@@ -71,8 +72,14 @@ namespace Appointment_Scheduler_Felix_Berinde
         private void submitButton_Click(object sender, EventArgs e)
         {
 
+            //TODO: Check for overlapping appointments
+
+            //TODO: Check to see if the textboxes don't exceed database limits for each value being updated
+
+            //variable for customerID
             int customerID;
 
+            //check if a customer is selected from the list
             if (CustomerList.SelectedIndex != -1)
             {
                 var selectedCustomer = (Customer)CustomerList.SelectedItem;
