@@ -62,14 +62,70 @@ namespace Appointment_Scheduler_Felix_Berinde
             //set the selected item in the CustomerList to the customer associated with the appointment
             CustomerList.SelectedValue = appointment.CustomerID;
 
-
-            //TODO: Finish Modify Appointment submission
-
-
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
         {
+            this.Close();
+        }
+
+        private void submitButton_Click(object sender, EventArgs e)
+        {
+            //TODO: Check for overlapping appointments
+
+            //TODO: Check to see if the textboxes don't exceed database limits for each value being updated
+
+            //variable for customerID
+            int customerID;
+
+            //check if a customer is selected from the list
+            if (CustomerList.SelectedIndex != -1)
+            {
+                var selectedCustomer = (Customer)CustomerList.SelectedItem;
+                customerID = selectedCustomer.CustomerID;
+            }
+            else
+            {
+                MessageBox.Show("Please select a customer from the list.");
+                return;
+            }
+
+            //create variables for update commands
+            User currentUser = Login._CurrUser;
+            string title = appointmentTitleTextBox.Text;
+            string description = appointmentDescriptionTextBox.Text;
+            string type = appointmentTypeTextBox.Text;
+            DateTime start = startDateTime;
+            DateTime end = endDateTime;
+            string userName = currentUser.UserName;
+
+            //TODO: Insert statement and sql command
+
+            //create insert statement
+
+
+
+
+
+
+
+            //open db connection
+            DBConnection.StartConnection();
+
+            //create sql command
+
+
+
+
+
+            //close connection
+            DBConnection.CloseConnection();
+
+            //open customer form
+            Appointments appointmentForm = new Appointments();
+            appointmentForm.Show();
+
+            //close this form
             this.Close();
         }
     }
