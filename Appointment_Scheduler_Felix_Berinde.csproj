@@ -96,7 +96,6 @@
     <Compile Include="AddCustomer.Designer.cs">
       <DependentUpon>AddCustomer.cs</DependentUpon>
     </Compile>
-    <Compile Include="Address.cs" />
     <Compile Include="Appointment.cs" />
     <Compile Include="Appointments.cs">
       <SubType>Form</SubType>
@@ -110,8 +109,6 @@
     <Compile Include="Calendars.Designer.cs">
       <DependentUpon>Calendars.cs</DependentUpon>
     </Compile>
-    <Compile Include="City.cs" />
-    <Compile Include="Country.cs" />
     <Compile Include="CurrentUser.cs" />
     <Compile Include="Customer.cs" />
     <Compile Include="Customers.cs">
