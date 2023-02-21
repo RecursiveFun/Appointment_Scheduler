@@ -85,10 +85,10 @@ namespace Appointment_Scheduler_Felix_Berinde
                 string customer = customerNameTextBox.Text;
                 string phone = customerPhoneTextBox.Text;
                 string user = Login._CurrUser.UserName; /*Placeholder for now I eventually would like the currently logged in user
-                * to take this value, but this is currently not required for the project */
+                * to update the updatedBy field, but this is currently not required for the project */
 
 
-                //create insert statement
+                //create update statement
                 string UPDATECUSTOMER = 
                     @"UPDATE client_schedule.customer
                     SET customerName = @customer
@@ -102,6 +102,7 @@ namespace Appointment_Scheduler_Felix_Berinde
                     UPDATE client_schedule.country
                     SET country = @country
                     WHERE countryId = (SELECT countryId FROM client_schedule.city WHERE cityId = (SELECT cityId FROM client_schedule.address WHERE addressId = (SELECT addressId FROM customer WHERE customerId = @customerId)))";
+
 
                 //open db connection
                 DBConnection.StartConnection();

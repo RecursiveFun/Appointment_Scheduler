@@ -34,8 +34,6 @@ namespace Appointment_Scheduler_Felix_Berinde
             this.endDatePicker = new System.Windows.Forms.DateTimePicker();
             this.startLabel = new System.Windows.Forms.Label();
             this.endLabel = new System.Windows.Forms.Label();
-            this.startTimePicker = new System.Windows.Forms.DateTimePicker();
-            this.endTimePicker = new System.Windows.Forms.DateTimePicker();
             this.appointmentTypeLabel = new System.Windows.Forms.Label();
             this.appointmentTypeTextBox = new System.Windows.Forms.TextBox();
             this.appointmentDescriptionLabel = new System.Windows.Forms.Label();
@@ -57,22 +55,26 @@ namespace Appointment_Scheduler_Felix_Berinde
             // 
             // startDatePicker
             // 
-            this.startDatePicker.Location = new System.Drawing.Point(167, 22);
+            this.startDatePicker.CustomFormat = "MM/dd/yyyy hh:mm tt";
+            this.startDatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.startDatePicker.Location = new System.Drawing.Point(216, 22);
             this.startDatePicker.Name = "startDatePicker";
-            this.startDatePicker.Size = new System.Drawing.Size(200, 20);
+            this.startDatePicker.Size = new System.Drawing.Size(241, 20);
             this.startDatePicker.TabIndex = 1;
             // 
             // endDatePicker
             // 
-            this.endDatePicker.Location = new System.Drawing.Point(167, 48);
+            this.endDatePicker.CustomFormat = "MM/dd/yyyy hh:mm tt";
+            this.endDatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.endDatePicker.Location = new System.Drawing.Point(216, 48);
             this.endDatePicker.Name = "endDatePicker";
-            this.endDatePicker.Size = new System.Drawing.Size(200, 20);
+            this.endDatePicker.Size = new System.Drawing.Size(240, 20);
             this.endDatePicker.TabIndex = 2;
             // 
             // startLabel
             // 
             this.startLabel.AutoSize = true;
-            this.startLabel.Location = new System.Drawing.Point(129, 22);
+            this.startLabel.Location = new System.Drawing.Point(178, 22);
             this.startLabel.Name = "startLabel";
             this.startLabel.Size = new System.Drawing.Size(32, 13);
             this.startLabel.TabIndex = 3;
@@ -81,25 +83,11 @@ namespace Appointment_Scheduler_Felix_Berinde
             // endLabel
             // 
             this.endLabel.AutoSize = true;
-            this.endLabel.Location = new System.Drawing.Point(129, 48);
+            this.endLabel.Location = new System.Drawing.Point(178, 48);
             this.endLabel.Name = "endLabel";
             this.endLabel.Size = new System.Drawing.Size(29, 13);
             this.endLabel.TabIndex = 4;
             this.endLabel.Text = "End:";
-            // 
-            // startTimePicker
-            // 
-            this.startTimePicker.Location = new System.Drawing.Point(373, 22);
-            this.startTimePicker.Name = "startTimePicker";
-            this.startTimePicker.Size = new System.Drawing.Size(83, 20);
-            this.startTimePicker.TabIndex = 5;
-            // 
-            // endTimePicker
-            // 
-            this.endTimePicker.Location = new System.Drawing.Point(373, 48);
-            this.endTimePicker.Name = "endTimePicker";
-            this.endTimePicker.Size = new System.Drawing.Size(83, 20);
-            this.endTimePicker.TabIndex = 6;
             // 
             // appointmentTypeLabel
             // 
@@ -193,8 +181,6 @@ namespace Appointment_Scheduler_Felix_Berinde
             this.Controls.Add(this.appointmentDescriptionLabel);
             this.Controls.Add(this.appointmentTypeTextBox);
             this.Controls.Add(this.appointmentTypeLabel);
-            this.Controls.Add(this.endTimePicker);
-            this.Controls.Add(this.startTimePicker);
             this.Controls.Add(this.endLabel);
             this.Controls.Add(this.startLabel);
             this.Controls.Add(this.endDatePicker);
@@ -215,8 +201,6 @@ namespace Appointment_Scheduler_Felix_Berinde
         private System.Windows.Forms.DateTimePicker endDatePicker;
         private System.Windows.Forms.Label startLabel;
         private System.Windows.Forms.Label endLabel;
-        private System.Windows.Forms.DateTimePicker startTimePicker;
-        private System.Windows.Forms.DateTimePicker endTimePicker;
         private System.Windows.Forms.Label appointmentTypeLabel;
         private System.Windows.Forms.TextBox appointmentTypeTextBox;
         private System.Windows.Forms.Label appointmentDescriptionLabel;

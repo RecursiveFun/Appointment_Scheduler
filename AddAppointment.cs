@@ -17,22 +17,11 @@ namespace Appointment_Scheduler_Felix_Berinde
     public partial class AddAppointment : Form
     {
         //create private variables
-        private DateTime startDateTime;
-        private DateTime endDateTime;
         private ArrayList customerArray = new ArrayList();
 
         public AddAppointment()
         {
             InitializeComponent();
-
-            //TODO: Fix datepicker/timepicker to display the correct end datetime
-
-            //set format for end and start time pickers
-            startTimePicker.Format = DateTimePickerFormat.Time;
-            endTimePicker.Format = DateTimePickerFormat.Time;
-            startTimePicker.ShowUpDown = true;
-            endTimePicker.ShowUpDown = true;
-
 
             //create and get a list of all customers to display in listbox as the customer selection
             BindingList<Customer> c = new BindingList<Customer>();
@@ -56,10 +45,7 @@ namespace Appointment_Scheduler_Felix_Berinde
             //set the DataSource of the listbox to the array of names
             CustomerList.DataSource = customerArray;
 
-            //combine date picker and time picker for start and end appointment times
-            startDateTime = startDatePicker.Value.Date + startTimePicker.Value.TimeOfDay;
-            endDateTime = endDatePicker.Value.Date + endTimePicker.Value.TimeOfDay;
-
+            
             //remove default selection
             CustomerList.ClearSelected();
         }
@@ -99,8 +85,8 @@ namespace Appointment_Scheduler_Felix_Berinde
             string title = appointmentTitleTextBox.Text;
             string description = appointmentDescriptionTextBox.Text;
             string type = appointmentTypeTextBox.Text;
-            DateTime start = startDateTime;
-            DateTime end = endDateTime;
+            DateTime start = startDatePicker.Value;
+            DateTime end = endDatePicker.Value;
             string userName = currentUser.UserName;
             
             const string INSERTAPPOINTMENT = @"INSERT INTO client_schedule.appointment VALUES (NULL, @customerIndex, @currentUserId, @title,
@@ -114,8 +100,8 @@ namespace Appointment_Scheduler_Felix_Berinde
             appCmd.Parameters.AddWithValue("@description", description);
             appCmd.Parameters.AddWithValue("@type", type);
             appCmd.Parameters.AddWithValue("@user", userName);
-            appCmd.Parameters.AddWithValue("@start", start);
-            appCmd.Parameters.AddWithValue("@end", end);
+            appCmd.Parameters.AddWithValue("@start", TimeZoneInfo.ConvertTimeToUtc(start));
+            appCmd.Parameters.AddWithValue("@end", TimeZoneInfo.ConvertTimeToUtc(end));
             appCmd.ExecuteNonQuery();
 
             //close form/connection

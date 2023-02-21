@@ -45,10 +45,6 @@ namespace Appointment_Scheduler_Felix_Berinde
             //remove vertical scrollbar
             appointmentsDGV.ScrollBars = ScrollBars.Vertical;
 
-            //autosize each column evenly in the grid based on grid size
-            appointmentsDGV.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            appointmentsDGV.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
-
 
             //remove unneeded columns from the grid
             appointmentsDGV.Columns["ID"].Visible = false;
@@ -59,15 +55,36 @@ namespace Appointment_Scheduler_Felix_Berinde
             appointmentsDGV.Columns["createDate"].Visible = false;
             appointmentsDGV.Columns["lastUpdate"].Visible = false;
             appointmentsDGV.Columns["lastUpdatedBy"].Visible = false;
-            
+            appointmentsDGV.Columns["createdBy"].Visible = false;
+
+            //change width of certain columns so they display nicer
+            appointmentsDGV.Columns["CustomerID"].Width = 75;
+            appointmentsDGV.Columns["Start"].Width = 120;
+            appointmentsDGV.Columns["End"].Width = 120;
+            appointmentsDGV.Columns["Type"].Width = 80;
+
 
             //Change column format in grid for datetimes to display the time
             appointmentsDGV.Columns[9].DefaultCellStyle.Format = "MM/dd/yyyy HH:mm:ss";
             appointmentsDGV.Columns[10].DefaultCellStyle.Format = "MM/dd/yyyy HH:mm:ss";
 
-            //Autosize columns to  length of data in each cell
-            appointmentsDGV.AutoResizeColumns();
-            appointmentsDGV.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            //loop through all the appointments and convert from UTC to users local time
+            for (int index = 0; index < appointmentsDGV.Rows.Count; index++)
+            {
+                DataGridViewRow row = appointmentsDGV.Rows[index];
+
+                // Convert "Start" time to local time
+                DateTime startUtc = (DateTime)row.Cells["Start"].Value;
+                DateTime startLocal = TimeZoneInfo.ConvertTimeFromUtc(startUtc, TimeZoneInfo.Local);
+                string startLocalString = startLocal.ToString();
+                row.Cells["Start"].Value = startLocalString;
+
+                // Convert "End" time to local time
+                DateTime endUtc = (DateTime)row.Cells["End"].Value;
+                DateTime endLocal = TimeZoneInfo.ConvertTimeFromUtc(endUtc, TimeZoneInfo.Local);
+                string endLocalString = endLocal.ToString();
+                row.Cells["End"].Value = endLocalString;
+            }
 
 
         }
