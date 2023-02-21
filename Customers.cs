@@ -88,6 +88,9 @@ namespace Appointment_Scheduler_Felix_Berinde
 
         private void deleteCustomerButton_Click(object sender, EventArgs e)
         {
+
+            //TODO: Check to see if there is any appointments associated with the customer before deletion
+
             //check for no selection
             if (customersDGV.CurrentRow == null || !customersDGV.CurrentRow.Selected)
             {
@@ -120,7 +123,7 @@ namespace Appointment_Scheduler_Felix_Berinde
                 //close the connection
                 DBConnection.CloseConnection();
 
-                //refresh the grid to show that the deletion worked
+                //refresh the grid
                 customersDGV.Refresh();
             }
         }
