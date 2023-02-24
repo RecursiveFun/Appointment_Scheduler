@@ -52,6 +52,8 @@ namespace Appointment_Scheduler_Felix_Berinde
             // 
             this.appointmentsDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.appointmentsDGV.Location = new System.Drawing.Point(220, 36);
+            this.appointmentsDGV.MaximumSize = new System.Drawing.Size(597, 589);
+            this.appointmentsDGV.MinimumSize = new System.Drawing.Size(597, 589);
             this.appointmentsDGV.Name = "appointmentsDGV";
             this.appointmentsDGV.Size = new System.Drawing.Size(597, 589);
             this.appointmentsDGV.TabIndex = 8;

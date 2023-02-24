@@ -47,7 +47,7 @@ namespace Appointment_Scheduler_Felix_Berinde
 
             
             //remove default selection
-            CustomerList.ClearSelected();
+            //CustomerList.ClearSelected();
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
@@ -58,8 +58,8 @@ namespace Appointment_Scheduler_Felix_Berinde
         private void submitButton_Click(object sender, EventArgs e)
         {
 
-            //TODO: Check for overlapping appointments
-
+            //TODO: Check for overlapping appointments and business hours
+            
             //TODO: Check to see if the textboxes don't exceed database limits for each value being updated
 
             //variable for customerID

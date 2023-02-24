@@ -33,12 +33,13 @@ namespace Appointment_Scheduler_Felix_Berinde
             this.appointmentButton = new System.Windows.Forms.Button();
             this.calendarButton = new System.Windows.Forms.Button();
             this.logoffButton = new System.Windows.Forms.Button();
+            this.reportsButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // customerButton
             // 
             this.customerButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.customerButton.Location = new System.Drawing.Point(48, 223);
+            this.customerButton.Location = new System.Drawing.Point(55, 186);
             this.customerButton.Name = "customerButton";
             this.customerButton.Size = new System.Drawing.Size(810, 58);
             this.customerButton.TabIndex = 1;
@@ -49,7 +50,7 @@ namespace Appointment_Scheduler_Felix_Berinde
             // appointmentButton
             // 
             this.appointmentButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.appointmentButton.Location = new System.Drawing.Point(48, 287);
+            this.appointmentButton.Location = new System.Drawing.Point(55, 250);
             this.appointmentButton.Name = "appointmentButton";
             this.appointmentButton.Size = new System.Drawing.Size(810, 58);
             this.appointmentButton.TabIndex = 2;
@@ -60,7 +61,7 @@ namespace Appointment_Scheduler_Felix_Berinde
             // calendarButton
             // 
             this.calendarButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.calendarButton.Location = new System.Drawing.Point(48, 351);
+            this.calendarButton.Location = new System.Drawing.Point(55, 314);
             this.calendarButton.Name = "calendarButton";
             this.calendarButton.Size = new System.Drawing.Size(810, 58);
             this.calendarButton.TabIndex = 3;
@@ -78,11 +79,23 @@ namespace Appointment_Scheduler_Felix_Berinde
             this.logoffButton.UseVisualStyleBackColor = true;
             this.logoffButton.Click += new System.EventHandler(this.logoffButton_Click);
             // 
+            // reportsButton
+            // 
+            this.reportsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.reportsButton.Location = new System.Drawing.Point(55, 378);
+            this.reportsButton.Name = "reportsButton";
+            this.reportsButton.Size = new System.Drawing.Size(810, 58);
+            this.reportsButton.TabIndex = 5;
+            this.reportsButton.Text = "Reports";
+            this.reportsButton.UseVisualStyleBackColor = true;
+            this.reportsButton.Click += new System.EventHandler(this.reportsButton_Click);
+            // 
             // Scheduler
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(914, 636);
+            this.Controls.Add(this.reportsButton);
             this.Controls.Add(this.logoffButton);
             this.Controls.Add(this.calendarButton);
             this.Controls.Add(this.appointmentButton);
@@ -103,5 +116,6 @@ namespace Appointment_Scheduler_Felix_Berinde
         private System.Windows.Forms.Button appointmentButton;
         private System.Windows.Forms.Button calendarButton;
         private System.Windows.Forms.Button logoffButton;
+        private System.Windows.Forms.Button reportsButton;
     }
 }

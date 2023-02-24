@@ -38,5 +38,11 @@ namespace Appointment_Scheduler_Felix_Berinde
             Calendars calendar = new Calendars();
             calendar.Show();
         }
+
+        private void reportsButton_Click(object sender, EventArgs e)
+        {
+            Reports report = new Reports();
+            report.Show();
+        }
     }
 }
