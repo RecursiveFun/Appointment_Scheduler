@@ -85,7 +85,7 @@ namespace Appointment_Scheduler_Felix_Berinde
             this.reportsButton.Location = new System.Drawing.Point(55, 378);
             this.reportsButton.Name = "reportsButton";
             this.reportsButton.Size = new System.Drawing.Size(810, 58);
-            this.reportsButton.TabIndex = 5;
+            this.reportsButton.TabIndex = 4;
             this.reportsButton.Text = "Reports";
             this.reportsButton.UseVisualStyleBackColor = true;
             this.reportsButton.Click += new System.EventHandler(this.reportsButton_Click);

@@ -34,7 +34,7 @@ namespace Appointment_Scheduler_Felix_Berinde
             this.appointmentTypeButton = new System.Windows.Forms.Button();
             this.schedulesButton = new System.Windows.Forms.Button();
             this.activeCustomersButton = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.printButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // backButton
@@ -87,22 +87,22 @@ namespace Appointment_Scheduler_Felix_Berinde
             this.activeCustomersButton.UseVisualStyleBackColor = true;
             this.activeCustomersButton.Click += new System.EventHandler(this.activeCustomersButton_Click);
             // 
-            // button1
+            // printButton
             // 
-            this.button1.Location = new System.Drawing.Point(494, 515);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 16;
-            this.button1.Text = "Print";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.printButton.Location = new System.Drawing.Point(494, 515);
+            this.printButton.Name = "printButton";
+            this.printButton.Size = new System.Drawing.Size(75, 23);
+            this.printButton.TabIndex = 16;
+            this.printButton.Text = "Print";
+            this.printButton.UseVisualStyleBackColor = true;
+            this.printButton.Click += new System.EventHandler(this.printButton_Click);
             // 
             // Reports
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(581, 550);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.printButton);
             this.Controls.Add(this.activeCustomersButton);
             this.Controls.Add(this.schedulesButton);
             this.Controls.Add(this.appointmentTypeButton);
@@ -125,6 +125,6 @@ namespace Appointment_Scheduler_Felix_Berinde
         private System.Windows.Forms.Button appointmentTypeButton;
         private System.Windows.Forms.Button schedulesButton;
         private System.Windows.Forms.Button activeCustomersButton;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button printButton;
     }
 }

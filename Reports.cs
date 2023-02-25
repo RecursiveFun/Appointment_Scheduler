@@ -16,22 +16,28 @@ namespace Appointment_Scheduler_Felix_Berinde
 {
     public partial class Reports : Form
     {
-
+        //create variables for printing
         PrintDocument document = new PrintDocument();
         PrintDialog dialog = new PrintDialog();
 
+        //create datatable
         private DataTable dt = new DataTable();
 
         public Reports()
         {
             InitializeComponent();
+            //start connection
             DBConnection.StartConnection();
+            //create sql string
             string sqlString = "SELECT * FROM appointment";
+            //create command
             MySqlCommand cmd = new MySqlCommand(sqlString, DBConnection.conn);
+            //grab data
             MySqlDataAdapter adp = new MySqlDataAdapter(cmd);
+            //insert data into datatable
             adp.Fill(dt);
-
-
+            //close connection
+            DBConnection.CloseConnection();
 
             document.PrintPage += new PrintPageEventHandler(document_PrintPage);
         }
@@ -97,7 +103,7 @@ namespace Appointment_Scheduler_Felix_Berinde
             //loop through each row
             foreach (DataRow row in dt.Rows)
             {
-                //grab data needed for report
+                //grab row data needed for the report
                 int id = (int)row["userId"];
                 string title = (string)row["title"];
                 string type = (string)row["type"];
@@ -105,7 +111,7 @@ namespace Appointment_Scheduler_Felix_Berinde
                 DateTime end = (DateTime)row["end"];
 
                 //create a string with formatting
-                string appointmentInfo = string.Format("ID: {0},   Title: {1},   Type: {2},   Start: {3},   End: {4}   \r\n", id,
+                string appointmentInfo = string.Format("ID: {0},   Title: {1},   Type: {2},   Start: {3},   End: {4}   \r\n\r\n", id,
                     title, type, start.ToLocalTime().ToString(), end.ToLocalTime().ToString());
 
                 //add string to end of textbox
@@ -135,7 +141,7 @@ namespace Appointment_Scheduler_Felix_Berinde
         }
 
 
-        private void button1_Click(object sender, EventArgs e)
+        private void printButton_Click(object sender, EventArgs e)
         {
             dialog.Document = document;
             if (dialog.ShowDialog() == DialogResult.OK)
@@ -143,7 +149,6 @@ namespace Appointment_Scheduler_Felix_Berinde
                 document.Print();
             }
         }
-
 
         void document_PrintPage(object sender, PrintPageEventArgs e)
         {

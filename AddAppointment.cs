@@ -47,7 +47,7 @@ namespace Appointment_Scheduler_Felix_Berinde
 
             
             //remove default selection
-            //CustomerList.ClearSelected();
+            CustomerList.ClearSelected();
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
