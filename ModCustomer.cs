@@ -63,6 +63,8 @@ namespace Appointment_Scheduler_Felix_Berinde
         {
             //TODO: Check to see if the textboxes don't exceed database limits for each value being updated
 
+            //TODO: Check for overlapping appointments prior to submit
+
             //check if textboxes are empty (keep address2 optional)
             if (customerNameTextBox.Text == string.Empty || customerAddressTextBox.Text == string.Empty
                                                          || customerCityTextBox.Text == string.Empty
