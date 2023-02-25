@@ -91,7 +91,7 @@ namespace Appointment_Scheduler_Felix_Berinde
             /*Nested lambdas: The first lambda iterates through the previous 10 years and the next ten years of the current year.
             The inner lambda iterates through every day of the year and adds each day to be included in the bolded dates with an array of datetime objects.
             The same can be accomplished with two for loops, but this is much shorter syntax and easier to read*/
-            calendarSelector.BoldedDates = Enumerable.Range(now - 10, now + 10).SelectMany(year => Enumerable.Range(1, 365).Select(dayOfYear => new DateTime(year, 1, 1).AddDays(dayOfYear - 1))).ToArray();
+            calendarSelector.BoldedDates = Enumerable.Range(now - 10, 21).SelectMany(year => Enumerable.Range(1, 365).Select(dayOfYear => new DateTime(year, 1, 1).AddDays(dayOfYear - 1))).ToArray();
 
             //update the dates
             calendarSelector.UpdateBoldedDates();
