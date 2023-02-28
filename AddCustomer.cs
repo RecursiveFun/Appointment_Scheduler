@@ -41,7 +41,6 @@ namespace Appointment_Scheduler_Felix_Berinde
 
         private void submitButton_Click(object sender, EventArgs e)
         {
-            //TODO: Check to see if the textboxes don't exceed database constraints for each value being inserted
             //check if textboxes are empty (keep address2 optional)
             if (customerNameTextBox.Text == string.Empty || customerAddressTextBox.Text == string.Empty
                                                          || customerCityTextBox.Text == string.Empty
@@ -49,7 +48,27 @@ namespace Appointment_Scheduler_Felix_Berinde
                                                          || customerPhoneTextBox.Text == string.Empty)
             {
                 MessageBox.Show(
-                    "Name, Address, City, Country, and/or Phone are blank. Please add missing values before trying to submit again.");
+                    "Name, Address, City, Country, and/or Phone are blank. Please add missing values before trying to submit again. (Address 2 is optional)");
+            }
+            else if (customerNameTextBox.Text.Length >= 45)
+            {
+                MessageBox.Show("Customer Name must be 45 characters or less.");
+            }
+            else if (customerAddressTextBox.Text.Length >= 50 || customerAddress2TextBox.Text.Length >= 50)
+            {
+                MessageBox.Show("Customer address fields must be 50 characters or less.");
+            }
+            else if (customerCityTextBox.Text.Length > 50)
+            {
+                MessageBox.Show("Customer City must be 50 characters or less.");
+            }
+            else if (customerPhoneTextBox.Text.Length > 20)
+            {
+                MessageBox.Show("Customer Phone number must be 20 characters or less.");
+            }
+            else if (customerCountryTextBox.Text.Length > 50)
+            {
+                MessageBox.Show("Customer Country must be 50 characters or less.");
             }
             else
             {

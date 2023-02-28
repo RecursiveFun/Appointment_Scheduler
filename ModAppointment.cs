@@ -19,6 +19,8 @@ namespace Appointment_Scheduler_Felix_Berinde
 
         //create private variables
         public int _appointId = 0;
+        public int CustomerId = 0;
+
         public ModAppointment()
         {
             InitializeComponent();
@@ -51,6 +53,8 @@ namespace Appointment_Scheduler_Felix_Berinde
                 if (customer.CustomerID == appointment.CustomerID)
                 {
                     customerNameLabel.Text = customer.Name;
+                    CustomerId = customer.CustomerID;
+                    break;
                 }
             }
 
@@ -63,10 +67,9 @@ namespace Appointment_Scheduler_Felix_Berinde
 
         private void submitButton_Click(object sender, EventArgs e)
         {
-            //TODO: Check for overlapping appointments
 
-            //TODO: Check to see if the textboxes don't exceed database limits for each value being updated
-
+            //create db connection
+            DBConnection.StartConnection();
 
             //create variables for update commands
             User currentUser = Login._CurrUser;
@@ -78,44 +81,119 @@ namespace Appointment_Scheduler_Felix_Berinde
             DateTime start = startDatePicker.Value;
             DateTime end = endDatePicker.Value;
 
+            if (title.Length > 255)
+            {
+                MessageBox.Show("Title exceeds database limit of 255 characters.");
+                return;
+            }
 
+            if (description.Length > 65535)
+            {
+                MessageBox.Show("Description exceeds database limit of 65,535 characters.");
+                return;
+            }
 
-            //create insert statement
-            string UPDATEAPPOINTMENT = 
-                @"UPDATE appointment
+            if (type.Length > 65536)
+            {
+                MessageBox.Show("Type exceeds database limit of 65,535 characters.");
+                return;
+            }
+
+            //get all appointments by id
+            string allAppointmentsById = @"SELECT * FROM appointment WHERE customerId = @customerId";
+
+            //Create select command
+            MySqlCommand allCmd = new MySqlCommand(allAppointmentsById, DBConnection.conn);
+            allCmd.Parameters.AddWithValue("@customerId", CustomerId);
+
+            //execute the query and retrieve the results
+            MySqlDataReader reader = allCmd.ExecuteReader();
+            DataTable appointments = new DataTable();
+            appointments.Load(reader);
+
+            reader.Close();
+
+            //check for overlapping appointments and business hours prior to insert command
+            bool overlap = false;
+            bool outsideHours = false;
+
+            foreach (DataRow appointment in appointments.Rows)
+            {
+
+                DateTime proposedStart = DateTime.Parse(appointment["start"].ToString());
+                DateTime proposedEnd = DateTime.Parse(appointment["end"].ToString());
+                proposedStart = proposedStart.ToLocalTime();
+                proposedEnd = proposedEnd.ToLocalTime();
+
+                //Check for overlapping appointments
+                if ((start >= proposedStart && start < proposedEnd) ||
+                    (end > proposedStart && end <= proposedEnd) ||
+                    (start <= proposedStart && end >= proposedEnd))
+                {
+                    overlap = true;
+                    break;
+                }
+
+                //check for business hours
+                if (start.Hour < 9 || start.Hour >= 17 || start.DayOfWeek == DayOfWeek.Saturday ||
+                    start.DayOfWeek == DayOfWeek.Sunday)
+                {
+                    outsideHours = true;
+                    break;
+                }
+
+            }
+
+            //throw a MessageBox if the appointments overlap
+            if (overlap)
+            {
+                MessageBox.Show(
+                    "Sorry, the customer selected already has an appointment during that time. Please check the start and end times and try again.");
+            }
+
+            //throw a MessageBox if the appointment is outside business hours.
+            else if (outsideHours)
+            {
+                MessageBox.Show(
+                    "Sorry, this appointment is outside of normal business hours (Monday - Friday 9AM - 5PM EST.).");
+            }
+
+            else
+            {
+
+                //create insert statement
+                string UPDATEAPPOINTMENT =
+                    @"UPDATE appointment
                     SET title = @title,
-                    description = @description, 
-                    type = @type, 
-                    start = @start, 
-                    end = @end 
-                WHERE appointmentId = @appointmentId;";
-
-
-            //open db connection
-            DBConnection.StartConnection();
-
-            //create sql command
-            MySqlCommand updatecmd = new MySqlCommand(UPDATEAPPOINTMENT, DBConnection.conn);
-            updatecmd.Parameters.AddWithValue(@"title", title);
-            updatecmd.Parameters.AddWithValue(@"description", description);
-            updatecmd.Parameters.AddWithValue(@"type", type);
-            updatecmd.Parameters.AddWithValue(@"start", TimeZoneInfo.ConvertTimeToUtc(start));
-            updatecmd.Parameters.AddWithValue(@"end", TimeZoneInfo.ConvertTimeToUtc(end));
-            updatecmd.Parameters.AddWithValue(@"appointmentId", _appointId);
-            updatecmd.ExecuteNonQuery();
+                        description = @description, 
+                        type = @type, 
+                        start = @start, 
+                        end = @end 
+                    WHERE appointmentId = @appointmentId;";
 
 
 
+                //create sql command
+                MySqlCommand updatecmd = new MySqlCommand(UPDATEAPPOINTMENT, DBConnection.conn);
+                updatecmd.Parameters.AddWithValue(@"title", title);
+                updatecmd.Parameters.AddWithValue(@"description", description);
+                updatecmd.Parameters.AddWithValue(@"type", type);
+                updatecmd.Parameters.AddWithValue(@"start", TimeZoneInfo.ConvertTimeToUtc(start));
+                updatecmd.Parameters.AddWithValue(@"end", TimeZoneInfo.ConvertTimeToUtc(end));
+                updatecmd.Parameters.AddWithValue(@"appointmentId", _appointId);
+                updatecmd.ExecuteNonQuery();
 
-            //close connection
-            DBConnection.CloseConnection();
 
-            //open customer form
-            Appointments appointmentForm = new Appointments();
-            appointmentForm.Show();
+                //close connection
+                DBConnection.CloseConnection();
 
-            //close this form
-            this.Close();
+                //open customer form
+                Appointments appointmentForm = new Appointments();
+                appointmentForm.Show();
+
+                //close this form
+                this.Close();
+            }
         }
     }
 }

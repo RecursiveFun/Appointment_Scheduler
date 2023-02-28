@@ -49,11 +49,34 @@ namespace Appointment_Scheduler_Felix_Berinde
             //see a full row selection
             calendarDGV.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
-
-
             //day is set as default
             handleDay();
+            //convert to local time
+            utcToLocal();
         }
+        private void calendarDGV_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            calendarDGV.ClearSelection();
+
+            //remove unneeded columns from the grid
+            calendarDGV.Columns["customerId"].Visible = false;
+            calendarDGV.Columns["userId"].Visible = false;
+            calendarDGV.Columns["location"].Visible = false;
+            calendarDGV.Columns["contact"].Visible = false;
+            calendarDGV.Columns["url"].Visible = false;
+            calendarDGV.Columns["createDate"].Visible = false;
+            calendarDGV.Columns["lastUpdate"].Visible = false;
+            calendarDGV.Columns["lastUpdateBy"].Visible = false;
+            calendarDGV.Columns["createdBy"].Visible = false;
+            calendarDGV.Columns["appointmentId"].Visible = false;
+
+            //change width of certain columns so they display nicer
+            calendarDGV.Columns["description"].Width = 250;
+            calendarDGV.Columns["start"].Width = 180;
+            calendarDGV.Columns["end"].Width = 180;
+            calendarDGV.Columns["type"].Width = 100;
+        }
+
 
 
         private void getData(string s)
@@ -165,7 +188,7 @@ namespace Appointment_Scheduler_Felix_Berinde
             //clear datatable
             dt.Clear();
 
-            //create variables
+            //create month variables
             int mo = currentDate.Month;
             int yr = currentDate.Year;
             int daysInMonth = DateTime.DaysInMonth(yr, mo);
@@ -219,26 +242,51 @@ namespace Appointment_Scheduler_Felix_Berinde
         private void DayButton_CheckedChanged(object sender, EventArgs e)
         {
             handleDay();
+            //convert to local time
+            utcToLocal();
         }
 
         private void weeklyButton_CheckedChanged(object sender, EventArgs e)
         {
             handleWeek();
+            //convert to local time
+            utcToLocal();
         }
 
         private void monthlyButton_CheckedChanged(object sender, EventArgs e)
         {
             handleMonth();
+            //convert to local time
+            utcToLocal();
         }
 
-        private void calendarDGV_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
-        {
-            calendarDGV.ClearSelection();
-        }
 
         private void allButton_CheckedChanged(object sender, EventArgs e)
         {
             handleAll();
+            //convert to local time
+            utcToLocal();
+        }
+
+        private void utcToLocal()
+        {
+            //loop through all the appointments and convert from UTC to users local time
+            for (int index = 0; index < calendarDGV.Rows.Count; index++)
+            {
+                DataGridViewRow row = calendarDGV.Rows[index];
+
+                // Convert "Start" time to local time
+                DateTime startUtc = (DateTime)row.Cells["Start"].Value;
+                DateTime startLocal = TimeZoneInfo.ConvertTimeFromUtc(startUtc, TimeZoneInfo.Local);
+                string startLocalString = startLocal.ToString();
+                row.Cells["Start"].Value = startLocalString;
+
+                // Convert "End" time to local time
+                DateTime endUtc = (DateTime)row.Cells["End"].Value;
+                DateTime endLocal = TimeZoneInfo.ConvertTimeFromUtc(endUtc, TimeZoneInfo.Local);
+                string endLocalString = endLocal.ToString();
+                row.Cells["End"].Value = endLocalString;
+            }
         }
     }
 }
