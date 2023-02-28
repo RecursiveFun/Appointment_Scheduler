@@ -98,7 +98,7 @@ namespace Appointment_Scheduler_Felix_Berinde
 
         private void schedulesButton_Click(object sender, EventArgs e)
         {
-            reportsTextBox.Text = "Report: Consultant by ID and each of their appointments.\r\n\r\n";
+            reportsTextBox.Text = "Report: Consultant by ID and each of their appointments in local time.\r\n\r\n";
 
             //loop through each row
             foreach (DataRow row in dt.Rows)
