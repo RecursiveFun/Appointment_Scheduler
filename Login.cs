@@ -77,6 +77,8 @@ namespace Appointment_Scheduler_Felix_Berinde
                                 //keep track of currently logged in userId
                                 _CurrUser = user;
                                 Console.WriteLine(_CurrUser.ToString());
+
+                                //TODO: Add alert to notify user of any appointments within 15 minutes of login and display the details.
                             }
                             else
                             {

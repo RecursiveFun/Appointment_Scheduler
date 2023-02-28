@@ -82,7 +82,7 @@ namespace Appointment_Scheduler_Felix_Berinde
             this.calendarDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.calendarDGV.Location = new System.Drawing.Point(257, 18);
             this.calendarDGV.Name = "calendarDGV";
-            this.calendarDGV.Size = new System.Drawing.Size(815, 731);
+            this.calendarDGV.Size = new System.Drawing.Size(805, 731);
             this.calendarDGV.TabIndex = 3;
             this.calendarDGV.TabStop = false;
             this.calendarDGV.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.calendarDGV_DataBindingComplete);
@@ -139,7 +139,7 @@ namespace Appointment_Scheduler_Felix_Berinde
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1084, 761);
+            this.ClientSize = new System.Drawing.Size(1074, 761);
             this.Controls.Add(this.allButton);
             this.Controls.Add(this.localTime);
             this.Controls.Add(this.localTimeLacbel);
@@ -149,8 +149,8 @@ namespace Appointment_Scheduler_Felix_Berinde
             this.Controls.Add(this.weeklyButton);
             this.Controls.Add(this.monthlyButton);
             this.Controls.Add(this.DayButton);
-            this.MaximumSize = new System.Drawing.Size(1100, 800);
-            this.MinimumSize = new System.Drawing.Size(1100, 800);
+            this.MaximumSize = new System.Drawing.Size(1090, 800);
+            this.MinimumSize = new System.Drawing.Size(1090, 800);
             this.Name = "Calendars";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Calendar";
