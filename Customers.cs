@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data;
 using System.Windows.Forms;
 using Appointment_Scheduler_Felix_Berinde.Database;
 using MySql.Data.MySqlClient;
@@ -88,9 +89,6 @@ namespace Appointment_Scheduler_Felix_Berinde
 
         private void deleteCustomerButton_Click(object sender, EventArgs e)
         {
-
-            //TODO: Check to see if there is any appointments associated with the customer before deletion
-
             //check for no selection
             if (customersDGV.CurrentRow == null || !customersDGV.CurrentRow.Selected)
             {
@@ -104,27 +102,53 @@ namespace Appointment_Scheduler_Felix_Berinde
             if (DialogResult.Yes == MessageBox.Show("Are You Sure?", "Confirmation", MessageBoxButtons.YesNo,
                     MessageBoxIcon.Warning))
             {
-                //remove customer from local list
-                customersDGV.Rows.RemoveAt(customersDGV.SelectedRows[0].Index);
-                allCusto.Remove(c);
-                
-                //open the connection
+                //create db connection
                 DBConnection.StartConnection();
 
-                //create variables for delete command
-                int ID = c.ID;
-                const string DELETECUSTOMER = @"DELETE FROM client_schedule.customer WHERE customerId = @ID;";
+                //get all appointments by id
+                string allAppointmentsById = @"SELECT * FROM appointment WHERE customerId = @customerId";
 
-                //create delete command
-                MySqlCommand deleteCustomerCmd = new MySqlCommand(DELETECUSTOMER, DBConnection.conn);
-                deleteCustomerCmd.Parameters.AddWithValue("@ID", ID);
-                deleteCustomerCmd.ExecuteNonQuery();
+                //Create select command
+                MySqlCommand allCmd = new MySqlCommand(allAppointmentsById, DBConnection.conn);
+                allCmd.Parameters.AddWithValue("@customerId", c.ID);
 
-                //close the connection
-                DBConnection.CloseConnection();
+                //execute the query and retrieve the results
+                MySqlDataReader reader = allCmd.ExecuteReader();
+                DataTable appointments = new DataTable();
+                appointments.Load(reader);
 
-                //refresh the grid
-                customersDGV.Refresh();
+                reader.Close();
+
+                if (appointments.Rows.Count > 0)
+                {
+                    MessageBox.Show(
+                        "Sorry, Please delete any associated appointments with this customer before trying again.");
+                }
+                else
+                {
+
+                    //remove customer from local list
+                    customersDGV.Rows.RemoveAt(customersDGV.SelectedRows[0].Index);
+                    allCusto.Remove(c);
+
+                    //open the connection
+                    DBConnection.StartConnection();
+
+                    //create variables for delete command
+                    int ID = c.ID;
+                    const string DELETECUSTOMER = @"DELETE FROM client_schedule.customer WHERE customerId = @ID;";
+
+                    //create delete command
+                    MySqlCommand deleteCustomerCmd = new MySqlCommand(DELETECUSTOMER, DBConnection.conn);
+                    deleteCustomerCmd.Parameters.AddWithValue("@ID", ID);
+                    deleteCustomerCmd.ExecuteNonQuery();
+
+                    //close the connection
+                    DBConnection.CloseConnection();
+
+                    //refresh the grid
+                    customersDGV.Refresh();
+                }
             }
         }
 
