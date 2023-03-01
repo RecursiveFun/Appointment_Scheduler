@@ -118,7 +118,6 @@ namespace Appointment_Scheduler_Felix_Berinde
                             }
                             else
                             {
-                                MessageBox.Show(string.Format(rm.GetString("strFailureMessage")));
                                 //log failed login attempt
                                 LogWriter.LogWrite(user.UserName + ": Attempted to login with an invalid password.");
                             }
