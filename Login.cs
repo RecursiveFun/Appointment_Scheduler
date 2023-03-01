@@ -13,7 +13,7 @@ using System.Globalization;
 using MySql.Data.MySqlClient;
 using Appointment_Scheduler_Felix_Berinde.Database;
 using System.Resources;
-
+using System.Threading;
 
 
 namespace Appointment_Scheduler_Felix_Berinde
@@ -41,6 +41,7 @@ namespace Appointment_Scheduler_Felix_Berinde
 
         private void loginButton_Click(object sender, EventArgs e)
         {
+            bool loginSuccessful = false;
 
             //Check to see if userName and password are over fifty characters
             if (userNameTextBox.Text.Length > 50 || passwordTextBox.Text.Length > 50)
@@ -66,6 +67,8 @@ namespace Appointment_Scheduler_Felix_Berinde
                         {
                             if (user.Password.ToLower() == passwordTextBox.Text.ToLower()) //successful login
                             {
+                                loginSuccessful = true;
+
                                 MessageBox.Show(string.Format(rm.GetString("strSuccessMessage")) +
                                                 userNameTextBox.Text);
                                 Scheduler scheduler = new Scheduler();
@@ -76,9 +79,42 @@ namespace Appointment_Scheduler_Felix_Berinde
 
                                 //keep track of currently logged in userId
                                 _CurrUser = user;
-                                Console.WriteLine(_CurrUser.ToString());
+                                
 
-                                //TODO: Add alert to notify user of any appointments within 15 minutes of login and display the details.
+                                DBConnection.StartConnection();
+
+                                //get all appointments by id
+                                string allAppointmentsByUserId = @"SELECT * FROM appointment WHERE userId = @userId";
+
+                                //Create select command
+                                MySqlCommand allCmd = new MySqlCommand(allAppointmentsByUserId, DBConnection.conn);
+                                allCmd.Parameters.AddWithValue("@userId", _CurrUser.Id);
+
+                                //execute the query and retrieve the results
+                                MySqlDataReader reader = allCmd.ExecuteReader();
+                                DataTable appointments = new DataTable();
+                                appointments.Load(reader);
+
+                                reader.Close();
+
+
+                                //Check to see if there is any active appointments within 15 minutes
+                                foreach (DataRow appointment in appointments.Rows)
+                                {
+                                    //create datetime variables for current time and 15 minutes later
+                                    DateTime now = DateTime.Now;
+                                    DateTime end = now.AddMinutes(15);
+
+                                    DateTime start = DateTime.Parse(appointment["start"].ToString());
+                                    start = start.ToLocalTime();
+                                    now = now.ToLocalTime();
+
+                                    if (start > now && start <= end)
+                                    {
+                                        MessageBox.Show("Appointment within 15 minutes: " + appointment["start"] + "\n\r\n\r" + 
+                                                        "Type: " + appointment["type"] + "\n\r\n\r" + "Details: " + appointment["description"]);
+                                    }
+                                }
                             }
                             else
                             {
@@ -88,6 +124,12 @@ namespace Appointment_Scheduler_Felix_Berinde
                             }
                         }
                     }
+
+                    if (!loginSuccessful)
+                    {
+                        MessageBox.Show(rm.GetString("strFailureMessage"));
+                    }
+
                 }
                 catch (MySqlException ex)
                 {

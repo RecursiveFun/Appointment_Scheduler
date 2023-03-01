@@ -53,6 +53,11 @@ namespace Appointment_Scheduler_Felix_Berinde
             handleDay();
             //convert to local time
             utcToLocal();
+
+            //Allow multiline and autosize rows for description
+            calendarDGV.Columns["description"].DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            calendarDGV.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+
         }
         private void calendarDGV_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
@@ -75,7 +80,17 @@ namespace Appointment_Scheduler_Felix_Berinde
             calendarDGV.Columns["start"].Width = 180;
             calendarDGV.Columns["end"].Width = 180;
             calendarDGV.Columns["type"].Width = 100;
+
+            //capitalize the columns
+            calendarDGV.Columns["title"].HeaderText = "Title";
+            calendarDGV.Columns["description"].HeaderText = "Description";
+            calendarDGV.Columns["type"].HeaderText = "Type";
+            calendarDGV.Columns["start"].HeaderText = "Start";
+            calendarDGV.Columns["end"].HeaderText = "End";
+
+
         }
+
 
 
 
@@ -113,7 +128,7 @@ namespace Appointment_Scheduler_Felix_Berinde
 
             /*Nested lambdas: The first lambda iterates through the previous 10 years and the next ten years of the current year.
             The inner lambda iterates through every day of the year and adds each day to be included in the bolded dates with an array of datetime objects.
-            The same can be accomplished with two for loops, but this is much shorter syntax and easier to read*/
+            The same can be accomplished with two for loops, but this is much shorter syntax and quicker to read.*/
             calendarSelector.BoldedDates = Enumerable.Range(now - 10, 21).SelectMany(year => Enumerable.Range(1, 365).Select(dayOfYear => new DateTime(year, 1, 1).AddDays(dayOfYear - 1))).ToArray();
 
             //update the dates
@@ -226,6 +241,7 @@ namespace Appointment_Scheduler_Felix_Berinde
 
             //start timer
             _timer.Start();
+
         }
 
         private void timer_Tick(object sender, EventArgs e)
