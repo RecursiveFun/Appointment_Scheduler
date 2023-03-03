@@ -116,6 +116,7 @@ namespace Appointment_Scheduler_Felix_Berinde
             //check for overlapping appointments and business hours prior to insert command
             bool overlap = false;
             bool outsideHours = false;
+            bool startGreaterThanEnd = false;
 
             foreach (DataRow appointment in appointments.Rows)
             {
@@ -142,6 +143,13 @@ namespace Appointment_Scheduler_Felix_Berinde
                     break;
                 }
 
+                //check if start date is less than end date
+                if (start > end)
+                {
+                    startGreaterThanEnd = true;
+                    break;
+                }
+
             }
 
             //throw a MessageBox if the appointments overlap
@@ -156,6 +164,11 @@ namespace Appointment_Scheduler_Felix_Berinde
             {
                 MessageBox.Show(
                     "Sorry, this appointment is outside of normal business hours (Monday - Friday 9AM - 5PM EST.).");
+            }
+
+            else if (startGreaterThanEnd)
+            {
+                MessageBox.Show("Start time must be less than end time.");
             }
 
             else

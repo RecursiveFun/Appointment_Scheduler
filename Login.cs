@@ -23,15 +23,36 @@ namespace Appointment_Scheduler_Felix_Berinde
         //create a variable to keep track of logged in user
         public static User _CurrUser { get; set; }
 
-        //Create ResourceManager for multi-lingual string data for Globalization requirement and switching between languages
-        ResourceManager rm = new ResourceManager(typeof(Login));
+        //private variables for messages
+        private string _strOverFailureMessage;
+
+        private string _strFailureMessage;
+
+        private string _strSuccessMessage;
 
         public Login()
         {
-            
             InitializeComponent();
 
+            //TODO: For testing purposes only. (Comment out below line before submission)
+            //CultureInfo.CurrentCulture = new CultureInfo("fr");
 
+            if (CultureInfo.CurrentCulture.TwoLetterISOLanguageName == "fr") 
+            {
+                this.Text = "l' Ouverture De Session";
+                loginButton.Text = "Connexion";
+                userNameLabel.Text = "Nom D'utilisateur:";
+                passwordLabel.Text = "Mot De Passe:";
+                _strFailureMessage = "Désolé, le nom d'utilisateur et/ou le mot de passe saisis sont invalides.";
+                _strSuccessMessage = "Le nom d'utilisateur ou le mot de passe ne doit pas dépasser 50 caractères.";
+                _strOverFailureMessage = "Bonjour, vous êtes connecté avec succès : ";
+            }
+            else
+            {
+                _strFailureMessage = "Sorry, the username and/or password entered are invalid.";
+                _strSuccessMessage = "Hello, you have successfully logged in: ";
+                _strOverFailureMessage = "Username or Password must not be over 50 characters in length.";
+            }
         }
 
         private void Login_Load(object sender, EventArgs e)
@@ -46,12 +67,12 @@ namespace Appointment_Scheduler_Felix_Berinde
             //Check to see if userName and password are over fifty characters
             if (userNameTextBox.Text.Length > 50 || passwordTextBox.Text.Length > 50)
             {
-                MessageBox.Show(string.Format(rm.GetString("strOverFailureMessage")));
+                MessageBox.Show(_strOverFailureMessage);
             }
             //check for empty text boxes
             if (userNameTextBox.Text.Equals(string.Empty) || passwordTextBox.Text.Equals(string.Empty))
             {
-                MessageBox.Show(string.Format(rm.GetString("strFailureMessage")));
+                MessageBox.Show(_strFailureMessage);
             }
             else
             {
@@ -69,11 +90,12 @@ namespace Appointment_Scheduler_Felix_Berinde
                             {
                                 loginSuccessful = true;
 
-                                MessageBox.Show(string.Format(rm.GetString("strSuccessMessage")) +
+                                MessageBox.Show(_strSuccessMessage +
                                                 userNameTextBox.Text);
                                 Scheduler scheduler = new Scheduler();
                                 scheduler.Show();
                                 this.Hide();
+
                                 //log successful login attempt
                                 LogWriter.LogWrite(user.UserName + ": Entered their password successfully.");
 
@@ -111,8 +133,10 @@ namespace Appointment_Scheduler_Felix_Berinde
 
                                     if (start > now && start <= end)
                                     {
-                                        MessageBox.Show("Appointment within 15 minutes: " + appointment["start"] + "\n\r\n\r" + 
-                                                        "Type: " + appointment["type"] + "\n\r\n\r" + "Details: " + appointment["description"]);
+                                        MessageBox.Show("Appointment within 15 minutes: " + start + "\n\r\n\r" + 
+                                                        "Title: " + appointment["title"] + "\n\r\n\r" +
+                                                        "Type: " + appointment["type"] + "\n\r\n\r" +
+                                                        "Details: " + appointment["description"]);
                                     }
                                 }
                             }
@@ -126,7 +150,7 @@ namespace Appointment_Scheduler_Felix_Berinde
 
                     if (!loginSuccessful)
                     {
-                        MessageBox.Show(rm.GetString("strFailureMessage"));
+                        MessageBox.Show(_strFailureMessage);
                     }
 
                 }
