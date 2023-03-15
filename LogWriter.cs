@@ -7,7 +7,7 @@ namespace Appointment_Scheduler_Felix_Berinde
 {
 
     //Code referenced from https://stackoverflow.com/questions/20185015/how-to-write-log-file-in-c
-    //for this function
+    //for this class
     public static class LogWriter
     {
         private static string m_exePath = string.Empty;
